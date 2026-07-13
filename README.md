@@ -1,5 +1,5 @@
-# 🎮 GTA Vice City Cloud Mobile Trainer Pro (Play Online & Mod Free)
-> Play GTA Vice City online directly in your browser with a virtual smartphone trainer HUD. Works instantly on any laptop/PC (Windows, macOS, Linux) without downloading gigabytes of game files or setting up local assets.
+# 🎮 GTA Vice City Online Cloud Play & Mod Launcher (No Downloads)
+> Launch and play GTA Vice City online instantly inside your web browser. A lightweight web launcher with a built-in virtual smartphone mod to trigger cheats, snap screenshots, and record runs on any laptop.
 
 ---
 
@@ -13,70 +13,58 @@
 
 ---
 
-## 🔍 SEO & Search Keywords (Why Use This Mod?)
+## 🔍 Search & SEO Keywords (Play Instantly Online)
 
-If you are looking for:
-* **GTA Vice City download pc** (get the modern online playing experience for free!)
-* **Play GTA Vice City online** in-browser with zero download or installation issues.
-* **GTA Vice City cheats** (full list including health, armor, weapons, tanks, and flying cars).
-* **GTA Vice City download free** (skip heavy files, use cloud emulation).
-* **GTA Vice City online emulator** (play on Chrome on Chromebooks, low-end laptops, or Kali Linux).
+If you are looking for an easy way to get:
+* **Play GTA Vice City online** inside Chrome or any browser.
+* **GTA Vice City download PC** (play instantly without setting up heavy local directory files!).
+* **GTA Vice City download free** (stream game assets directly on the cloud).
+* **GTA Vice City cheats** (health, armor, weapons, tanks, flying cars, weather).
+* **GTA Vice City online emulator launcher** (works perfectly on low-spec laptops, Chromebooks, or Linux desktops).
 
-This extension is the ultimate tool. It embeds a complete mobile mod into your browser game session, providing full trainer capabilities inside the active gameplay frame.
+This Chrome extension operates as a **Cloud Play Launcher** that launches the game environment and injects a fully interactive GTA V-style virtual smartphone HUD directly on top of the active WebGL rendering canvas.
 
 ---
 
 ## 🌟 Key Features
 
-* **GTA V-Style Smartphone HUD**: Slide up a fully interactive virtual mobile phone in the bottom-right corner of the gameplay window.
-* **Dual Layout Modes**:
-  * **List Mode**: A sleek scrollable list showing cheats and features.
-  * **2D Grid Mode**: An app-style grid layout featuring icons/emojis representing categories and functions.
-* **Layout-Independent 2D Navigation**: Use only the **Arrow Keys** (Left, Right, Up, Down) to select app icons and cheats.
-* **In-Game Camera Engine**:
-  * **Take Photo**: Capture high-quality PNG screenshots of your gameplay canvas with a white camera flash and click SFX.
-  * **Record Video**: Record your live gameplay sessions into high-quality WebM videos directly from the browser window.
-* **Premium Audio Synthesis**: Plays real DTMF telephone dial beeps, shutter snaps, and ringing sounds synthesized dynamically via the Web Audio API.
-* **Redundant Phase Interceptors**: Captures user hotkeys at the highest event phase to bypass emulator input swallows.
-* **Cloud Play Optimization**: Designed to inject seamlessly into sandboxed iframe structures (like Quenq emulator tabs) without causing GPU lag.
+* **Instant Web Launcher**: Run the full game online immediately in Chrome without downloading gigabytes of game assets.
+* **In-Game Mobile Mod (GTA V Style)**: Press the Up Arrow key to slide up a beautiful smartphone casing HUD in the bottom-right corner.
+* **Dynamic Grid & List UI**:
+  * **List Mode**: Standard scrollable options dashboard.
+  * **Grid Mode**: 2D app-style dashboard utilizing visual emojis for all cheats.
+* **Layout-Independent 2D Navigation**: Use only the **Arrow Keys** (Left, Right, Up, Down) to move through app icons.
+* **Built-in Capture Tools**:
+  * **Take Photo**: Captures high-quality PNG screenshots with a visual camera flash and click SFX.
+  * **Record Video**: Record your gameplay sessions into high-resolution WebM files directly from the browser window.
+* **DTMF Audio Tone Synthesizer**: Retro key tones, slide chirps, and shutter snaps synthesized locally via the Web Audio API.
+* **Lag-Free 60FPS Performance**: Overridden stylesheets remove backdrop filter overloads to keep rendering loops buttery smooth.
 
 ---
 
-## 🕹️ Controls Guide (Arrows & Enter Only)
+## 🕹️ Controls Guide (Arrow Keys & Enter Only)
 
-Make sure you are playing with **W/A/S/D** keyboard controls for moving and driving Tommy Vercetti so it doesn't conflict with key mapping.
-
-1. **Pull Out the Phone**: Press the **Up Arrow (`ArrowUp`)** key.
-2. **Navigate**:
-   - **List Mode**: Use **Up/Down Arrow** keys.
-   - **Grid Mode**: Use **Left/Right/Up/Down Arrow** keys.
-3. **Dial/Trigger Cheat**: Press **Enter** on your highlighted cheat or tool.
-4. **Layout Toggle**: Press Enter on **`[ TOGGLE GRID MODE ]`** (or select the `📋` icon in the grid) to switch views.
-5. **Put Away Phone**: Press **Backspace** or **Escape** to slide the phone down.
+* **Open Phone**: Press **Up Arrow (`ArrowUp`)** when the phone is closed. (A helpful pulsating badge will appear in the top-left corner on load, then self-destruct once opened).
+* **Scroll / Navigate**:
+  * **List Mode**: Use **Up/Down Arrow** keys.
+  * **Grid Mode**: Use **Left/Right/Up/Down Arrow** keys.
+* **Dial/Trigger Cheat**: Press **Enter** on your highlighted cheat or tool.
+* **Layout Toggle**: Press Enter on **`[ TOGGLE GRID MODE ]`** (or select the `📋` icon in the grid) to switch views.
+* **Put Away Phone**: Press **Backspace** or **Escape** to slide the phone down.
 
 ---
 
-## ⚡ Pro Tips for Gamers (Easy Troubleshooting)
+## 🚀 Setup & Launch Guide (Load Unpacked)
 
-* **If the Up Arrow key doesn't open the phone**: Click inside the game screen first to focus the tab so Chrome can route keypress events directly into the Wasm emulator context.
-* **If it shows the old Tekken HUD**: Clear your browser cache! Google Chrome heavily caches content scripts. Go to `chrome://extensions/`, click **Remove** on the trainer card, close the tab, load unpacked again, and open the game in a brand new tab to force Chrome to load the fresh phone code.
-* **Smooth Gameplay**: If you experience framerate drops, reload to version `v1.1.3` or higher. We removed expensive CSS backdrop-blur filter processes to restore stable 60FPS performance on all low-end laptops.
-
----
-
-## 🚀 Setup & Installation (Load Unpacked)
-
-Since this is a Chrome Extension, there is **zero file downloading** or game installations needed. You can play directly on the cloud emulator:
-
-1. **Download / Clone the Repository**:
+1. **Clone or Download the Repository**:
    ```bash
    git clone https://github.com/rajmodi135/vice-city-cloud-mobile-trainer.git
    ```
-   *(Alternatively, download the release ZIP file directly from the website)*
-2. **Load the Unpacked Extension in Chrome**:
-   - Open Google Chrome and go to **`chrome://extensions/`**.
-   - Enable **Developer mode** using the toggle switch in the top-right corner.
-   - Click the **"Load unpacked"** button in the top-left.
+   *(Or download the launcher ZIP directly from our GitHub Pages website)*
+2. **Load Unpacked Extension in Google Chrome**:
+   - Navigate to **`chrome://extensions/`**.
+   - Enable **Developer mode** (toggle switch in the top-right corner).
+   - Click the **"Load unpacked"** button (top-left).
    - Select the folder containing these files (`vice-city-trainer-extension`).
 3. **Launch and Play**:
    - Open the game on the cloud platform: [Quenq Game Link](https://quenq.com/play/9fa6d40cbabd8bfc416b30fa/).
