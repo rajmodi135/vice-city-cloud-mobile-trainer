@@ -212,6 +212,81 @@
       box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
     }
 
+    /* Game Running Line - Workflow Timeline */
+    .running-line-section {
+      background: rgba(17, 9, 44, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 40px 20px;
+      margin-bottom: 80px;
+    }
+
+    .timeline-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      position: relative;
+      margin-top: 30px;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 35px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
+      z-index: 1;
+    }
+
+    .timeline-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--bg-panel);
+      border: 2.5px solid var(--accent-pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 15px auto;
+      box-shadow: var(--shadow-pink);
+      transition: all 0.3s ease-out;
+    }
+
+    .timeline-step:nth-child(even) .timeline-icon {
+      border-color: var(--accent-cyan);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .timeline-step:hover .timeline-icon {
+      transform: scale(1.15);
+    }
+
+    .timeline-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 0 10px;
+    }
+
     /* Features Grid */
     .section-title {
       font-family: 'Orbitron', sans-serif;
@@ -488,6 +563,13 @@
       .hero-title {
         font-size: 32px;
       }
+      .timeline-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+      .timeline-container::before {
+        display: none;
+      }
       .nav-links {
         display: none;
       }
@@ -501,6 +583,7 @@
     <div class="container nav-bar">
       <a href="#" class="logo-brand">VICE<span>LAUNCHER</span></a>
       <ul class="nav-links">
+        <li><a href="#running-line">How it Works</a></li>
         <li><a href="#features">Launcher Features</a></li>
         <li><a href="#cheats">Cheats List</a></li>
         <li><a href="#install">How to Play</a></li>
@@ -524,6 +607,38 @@
       </div>
     </section>
 
+    <!-- Game Running Line Section (Gameplay Workflow pipeline) -->
+    <section id="running-line" class="running-line-section">
+      <h2 class="section-title">Cloud Gameplay Pipeline</h2>
+      <div class="timeline-container">
+        
+        <div class="timeline-step">
+          <div class="timeline-icon">⚡</div>
+          <h4 class="timeline-title">1. One-Click Install</h4>
+          <p class="timeline-desc">Add the lightweight launcher extension directly into Chrome in 15 seconds.</p>
+        </div>
+
+        <div class="timeline-step">
+          <div class="timeline-icon">🌐</div>
+          <h4 class="timeline-title">2. Cloud Load</h4>
+          <p class="timeline-desc">Launch the game directly from the extension popup. It loads the WebGL emulator inside the active tab.</p>
+        </div>
+
+        <div class="timeline-step">
+          <div class="timeline-icon">📱</div>
+          <h4 class="timeline-title">3. HUD Activation</h4>
+          <p class="timeline-desc">Press the Up Arrow key inside the focused game viewport to slide up the virtual smartphone HUD.</p>
+        </div>
+
+        <div class="timeline-step">
+          <div class="timeline-icon">🎮</div>
+          <h4 class="timeline-title">4. Cheat & Mod</h4>
+          <p class="timeline-desc">Navigate cheats, snap screenshots, or record WebM video loops using only Arrow keys and Enter.</p>
+        </div>
+
+      </div>
+    </section>
+
     <!-- Branding Banner -->
     <section class="branding-banner">
       <h2>Complete Cloud Play & Mod Engine</h2>
@@ -533,43 +648,61 @@
 
     <!-- Features -->
     <section id="features" style="padding-top: 40px;">
-      <h2 class="section-title">Launcher Capabilities</h2>
+      <h2 class="section-title">Launcher Features & Architecture</h2>
       <div class="features-grid">
         
         <div class="feature-card">
           <div class="feature-icon">🚀</div>
           <h3 class="feature-name">Instant Web Launcher</h3>
-          <p class="feature-desc">Play the full game instantly in Chrome without downloading gigabytes of game assets or setting up local computer directories.</p>
+          <p class="feature-desc">Loads and runs the cloud-based game client instantly inside Chrome's WebAssembly container. Zero file downloading or local file structure installation needed.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">📱</div>
           <h3 class="feature-name">In-Game Mobile Mod</h3>
-          <p class="feature-desc">Press Up Arrow to open a beautiful silver-blue smartphone overlay directly inside the browser viewport to trigger codes instantly.</p>
+          <p class="feature-desc">Spawns a detailed silver-blue smartphone overlay matching the GTA V layout. Equipped with digital clock syncing, battery signals, and sound synthesizers.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">📋</div>
-          <h3 class="feature-name">List & 2D Grid UI</h3>
-          <p class="feature-desc">Navigate cheats with a clean list or change to a 2D grid home screen with app emojis using Left, Right, Up, and Down arrows.</p>
+          <h3 class="feature-name">2D App Icon Grid</h3>
+          <p class="feature-desc">Toggle the viewport between list scrolling and a 2D grid. The grid organizes cheats into visually clean icons navigable in all directions (Left/Right/Up/Down).</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">📸</div>
-          <h3 class="feature-name">Camera & Screen Recorder</h3>
-          <p class="feature-desc">Snap high-quality PNG screenshots with a visual flash or capture screen videos directly from the phone list onto your laptop.</p>
+          <h3 class="feature-name">Canvas Frame Capturer</h3>
+          <p class="feature-desc">Extracts render frames directly from the active game canvas, generating immediate PNG image downloads for wallpaper snaps.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📹</div>
+          <h3 class="feature-name">MediaStream Video Recorder</h3>
+          <p class="feature-desc">Records screen runs into high-quality compressed WebM files using local MediaRecorder drivers. Displays a blinking red 🔴 REC warning in the phone top bar.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🔊</div>
-          <h3 class="feature-name">Synthesized Key Tones</h3>
-          <p class="feature-desc">Enjoy retro telephone touch DTMF beeps, slide-up chirps, and shutter click sound effects synthesized dynamically.</p>
+          <h3 class="feature-name">DTMF Audio Synthesis</h3>
+          <p class="feature-desc">Raw oscillators play retro dial tone key beeps, transition slides, and camera shutter sounds synthesized on the fly via the Web Audio API.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">⚡</div>
-          <h3 class="feature-name">Lag-Free 60FPS</h3>
-          <p class="feature-desc">Lightweight stylesheet overrides remove heavy filter processes, keeping the 3D WebGL game loop running at full speed.</p>
+          <h3 class="feature-name">Capture-Phase Listeners</h3>
+          <p class="feature-desc">Binds keyboard handlers directly to the window and document during the event capture phase to bypass emulator input swallow filters.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-name">Iframe & Sandbox Safe</h3>
+          <p class="feature-desc">Auto-relocates overlay frames inside sandboxed origins (like quenq.com) and native full-screen elements without breaking DOM bounds.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💨</div>
+          <h3 class="feature-name">60FPS GPU Optimization</h3>
+          <p class="feature-desc">Refined stylesheet layers remove backdrop image blur properties, protecting the GPU from framerate drops and maintaining maximum 3D rendering speeds.</p>
         </div>
 
       </div>
