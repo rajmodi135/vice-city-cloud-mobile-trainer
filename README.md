@@ -1,5 +1,5 @@
-# 🎮 GTA Vice City Online Cloud Play & Mod Launcher (No Downloads)
-> Launch and play GTA Vice City online instantly inside your web browser. A lightweight web launcher with a built-in virtual smartphone mod to trigger cheats, snap screenshots, and record runs on any laptop.
+# 🎮 GTA Vercetti OS - Cloud Play & Mod Launcher (No Downloads)
+> Launch and play GTA Vice City online instantly inside your web browser. A lightweight web launcher with a built-in virtual smartphone mod (Vercetti OS) to trigger cheats, snap screenshots, and record runs on any laptop.
 
 ---
 
@@ -22,14 +22,14 @@ If you are looking for an easy way to get:
 * **GTA Vice City cheats** (health, armor, weapons, tanks, flying cars, weather).
 * **GTA Vice City online emulator launcher** (works perfectly on low-spec laptops, Chromebooks, or Linux desktops).
 
-This Chrome extension operates as a **Cloud Play Launcher** that launches the game environment and injects a fully interactive GTA V-style virtual smartphone HUD directly on top of the active WebGL rendering canvas.
+This Chrome extension operates as the **GTA Vercetti OS Cloud Play Launcher** that launches the game environment and injects a fully interactive GTA V-style virtual smartphone HUD directly on top of the active WebGL rendering canvas.
 
 ---
 
 ## 🌟 Key Features
 
 * **Instant Web Launcher**: Run the full game online immediately in Chrome without downloading gigabytes of game assets.
-* **In-Game Mobile Mod (GTA V Style)**: Press the Up Arrow key to slide up a beautiful smartphone casing HUD in the bottom-right corner.
+* **In-Game Mobile Mod (Vercetti OS)**: Press the Up Arrow key to slide up a beautiful smartphone casing HUD in the bottom-right corner.
 * **Dynamic Grid & List UI**:
   * **List Mode**: Standard scrollable options dashboard.
   * **Grid Mode**: 2D app-style dashboard utilizing visual emojis for all cheats.

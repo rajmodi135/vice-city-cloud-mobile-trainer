@@ -1,4 +1,4 @@
-// popup.js - GTA Vice City Web Trainer Pro popup logic
+// popup.js - GTA Vercetti OS popup logic
 
 const CHEATS = [
   {"action": "Full Health", "code": "aspirine", "key_desc": "Alt+Shift+H", "category": "player"},

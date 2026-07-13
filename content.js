@@ -1,4 +1,4 @@
-// content.js - GTA Vice City Web Trainer Pro: Virtual Smartphone HUD In-Page Injector
+// content.js - GTA Vercetti OS: Cloud Play & Mod Launcher
 
 console.log("[Trainer Extension] content.js loading context...");
 
@@ -99,7 +99,7 @@ function initOverlay() {
 
   const appTitle = document.createElement("div");
   appTitle.className = "vcc-phone-app-title";
-  appTitle.textContent = "TRAINER CONSOLE";
+  appTitle.textContent = "VERCETTI OS";
   appBody.appendChild(appTitle);
 
   // Viewport Up Arrow (List Mode scroll indicator)
@@ -538,7 +538,7 @@ if (isGameFrame) {
           closeMenu();
           triggerCheatDirectly(selectedCheat.code);
           if (appTitle) {
-            appTitle.textContent = "TRAINER CONSOLE";
+            appTitle.textContent = "VERCETTI OS";
             appTitle.style.color = "#ff3366";
           }
         }, 350);
