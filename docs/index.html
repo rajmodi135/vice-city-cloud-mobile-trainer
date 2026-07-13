@@ -11,12 +11,12 @@
   <style>
     :root {
       --bg-dark: #070314;
-      --bg-panel: #11092c;
+      --bg-panel: rgba(17, 9, 44, 0.85);
       --accent-pink: #ff0055;
       --accent-cyan: #00f0ff;
       --accent-yellow: #ffcc00;
       --text-main: #ffffff;
-      --text-muted: #8c8c9a;
+      --text-muted: #c2c2cf;
       --shadow-pink: 0 0 10px rgba(255, 0, 85, 0.4);
       --shadow-cyan: 0 0 10px rgba(0, 240, 255, 0.4);
     }
@@ -29,11 +29,37 @@
 
     body {
       background-color: var(--bg-dark);
-      background-image: radial-gradient(circle at top, #19093a 0%, #070314 100%);
       color: var(--text-main);
       font-family: 'Rajdhani', sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    /* Fixed Slideshow Background Elements */
+    .vcc-bg-slide {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -3;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: opacity 1.5s ease-in-out;
+      pointer-events: none;
+    }
+
+    /* Gradient overlay dim mask for high-contrast text safety */
+    .vcc-bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      background: radial-gradient(circle, rgba(7, 3, 20, 0.35) 0%, rgba(7, 3, 20, 0.88) 85%);
+      pointer-events: none;
     }
 
     /* Scrollbar */
@@ -120,18 +146,6 @@
       position: relative;
     }
 
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255, 0, 85, 0.15) 0%, transparent 70%);
-      transform: translate(-50%, -50%);
-      z-index: -1;
-    }
-
     .hero-badge {
       display: inline-block;
       border: 1px solid var(--accent-cyan);
@@ -144,7 +158,7 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 20px;
-      background: rgba(0, 240, 255, 0.05);
+      background: rgba(0, 240, 255, 0.1);
     }
 
     .hero-title {
@@ -154,14 +168,15 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 15px;
-      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
     }
 
     .hero-subtitle {
       font-size: 18px;
-      color: var(--text-muted);
+      color: #e2e2ec;
       max-width: 700px;
       margin: 0 auto 30px auto;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
     }
 
     .cta-container {
@@ -214,11 +229,12 @@
 
     /* Game Running Line - Workflow Timeline */
     .running-line-section {
-      background: rgba(17, 9, 44, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(17, 9, 44, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
       padding: 40px 20px;
       margin-bottom: 80px;
+      backdrop-filter: blur(5px);
     }
 
     .timeline-container {
@@ -252,7 +268,7 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: var(--bg-panel);
+      background: #09041a;
       border: 2.5px solid var(--accent-pink);
       display: flex;
       align-items: center;
@@ -283,7 +299,7 @@
 
     .timeline-desc {
       font-size: 13px;
-      color: var(--text-muted);
+      color: #ffe5f2;
       padding: 0 10px;
     }
 
@@ -316,12 +332,13 @@
 
     .feature-card {
       background: var(--bg-panel);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       padding: 30px;
       transition: all 0.2s ease-in-out;
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(5px);
     }
 
     .feature-card:hover {
@@ -349,13 +366,14 @@
 
     /* Mauxx AI branding showcase */
     .branding-banner {
-      background: linear-gradient(90deg, #160a36 0%, #2f1254 50%, #160a36 100%);
+      background: linear-gradient(90deg, rgba(22, 10, 54, 0.9) 0%, rgba(47, 18, 84, 0.9) 50%, rgba(22, 10, 54, 0.9) 100%);
       border: 1.5px solid var(--accent-pink);
       border-radius: 12px;
       padding: 40px;
       text-align: center;
       margin-bottom: 80px;
       box-shadow: var(--shadow-pink);
+      backdrop-filter: blur(5px);
     }
 
     .branding-banner h2 {
@@ -385,9 +403,10 @@
     .cheat-section {
       background: var(--bg-panel);
       border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 40px;
       margin-bottom: 80px;
+      backdrop-filter: blur(5px);
     }
 
     .cheat-search-container {
@@ -459,6 +478,7 @@
       padding: 25px;
       border-radius: 8px;
       border-top: 3px solid var(--accent-pink);
+      backdrop-filter: blur(5px);
     }
 
     .step-num {
@@ -490,10 +510,11 @@
 
     .faq-item {
       background: var(--bg-panel);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       margin-bottom: 12px;
       border-radius: 6px;
       overflow: hidden;
+      backdrop-filter: blur(5px);
     }
 
     .faq-question {
@@ -542,6 +563,8 @@
       background: #05020f;
       padding: 40px 0;
       text-align: center;
+      position: relative;
+      z-index: 10;
     }
 
     .footer-text {
@@ -578,6 +601,11 @@
 </head>
 <body>
 
+  <!-- Rotating Backgrounds (Slideshow) -->
+  <div id="vcc-bg-slideshow-1" class="vcc-bg-slide" style="background-image: url('images/bg1.jpg'); opacity: 1;"></div>
+  <div id="vcc-bg-slideshow-2" class="vcc-bg-slide" style="background-image: url('images/bg2.jpg'); opacity: 0;"></div>
+  <div class="vcc-bg-overlay"></div>
+
   <!-- Navigation -->
   <header>
     <div class="container nav-bar">
@@ -592,7 +620,7 @@
     </div>
   </header>
 
-  <div class="container">
+  <div class="container" style="position: relative; z-index: 10;">
     
     <!-- Hero Section -->
     <section class="hero-section">
@@ -843,6 +871,33 @@
 
     // Initial render
     renderCheats(CHEATS_DATA);
+
+    // Dynamic Background Rotating Slideshow
+    const bgImages = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg'];
+    let currentBgIndex = 0;
+    let activeSlideId = 1;
+
+    function rotateBackground() {
+      const nextIndex = (currentBgIndex + 1) % bgImages.length;
+      const slide1 = document.getElementById("vcc-bg-slideshow-1");
+      const slide2 = document.getElementById("vcc-bg-slideshow-2");
+      
+      if (activeSlideId === 1) {
+        slide2.style.backgroundImage = `url('${bgImages[nextIndex]}')`;
+        slide2.style.opacity = "1";
+        slide1.style.opacity = "0";
+        activeSlideId = 2;
+      } else {
+        slide1.style.backgroundImage = `url('${bgImages[nextIndex]}')`;
+        slide1.style.opacity = "1";
+        slide2.style.opacity = "0";
+        activeSlideId = 1;
+      }
+      currentBgIndex = nextIndex;
+    }
+
+    // Fade background image every 7 seconds
+    setInterval(rotateBackground, 7000);
   </script>
 </body>
 </html>
