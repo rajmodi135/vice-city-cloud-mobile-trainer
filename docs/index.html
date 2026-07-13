@@ -231,21 +231,88 @@
       text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
     }
 
-    /* Redesigned High-Contrast glowing buttons container */
+    /* ── CTA CONTAINER ── */
     .cta-container {
       display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
       margin-bottom: 40px;
+    }
+
+    /* ── PRIMARY MEGA DOWNLOAD BUTTON ── */
+    .btn-download-mega {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(14px, 2.2vw, 18px);
+      font-weight: 900;
+      padding: 20px 55px;
+      border-radius: 60px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 540px;
+      background: linear-gradient(135deg, #ffcc00 0%, #ff8800 60%, #ff0055 100%);
+      color: #000000 !important;
+      border: 3px solid #ffcc00;
+      box-shadow: 0 0 30px rgba(255,204,0,0.7), 0 0 60px rgba(255,0,85,0.3), 0 8px 30px rgba(0,0,0,0.5);
+      animation: megaDlPulse 1.8s ease-in-out infinite alternate;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .btn-download-mega::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -60%;
+      width: 40%; height: 200%;
+      background: rgba(255,255,255,0.25);
+      transform: skewX(-20deg);
+      animation: shineSlide 2.5s ease-in-out infinite;
+    }
+    @keyframes shineSlide {
+      0%   { left: -60%; }
+      50%  { left: 140%; }
+      100% { left: 140%; }
+    }
+    @keyframes megaDlPulse {
+      0%   { box-shadow: 0 0 20px #ffcc00, 0 0 40px rgba(255,0,85,0.3); transform: scale(1); }
+      100% { box-shadow: 0 0 45px #ffcc00, 0 0 80px rgba(255,0,85,0.5); transform: scale(1.025); }
+    }
+    .btn-download-mega:hover {
+      transform: translateY(-4px) scale(1.03) !important;
+      box-shadow: 0 0 60px #ffcc00, 0 0 100px rgba(255,0,85,0.6), 0 12px 40px rgba(0,0,0,0.6) !important;
+      animation: none;
+    }
+    .btn-download-mega .dl-arrow {
+      font-size: 1.4em;
+      animation: arrowBounce 1s ease-in-out infinite alternate;
+    }
+    @keyframes arrowBounce {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
+    /* ── SECONDARY BUTTONS ROW ── */
+    .cta-secondary-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      width: 100%;
     }
 
     .btn {
       display: inline-block;
       font-family: 'Orbitron', sans-serif;
-      font-size: 13px;
+      font-size: clamp(11px, 1.5vw, 13px);
       font-weight: 900;
-      padding: 15px 30px;
+      padding: 13px 26px;
       border-radius: 8px;
       text-decoration: none;
       text-transform: uppercase;
@@ -254,14 +321,12 @@
       transition: all 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
     }
 
-    /* Button 1: Download - Solid Pink */
     .btn-pink {
       background: var(--accent-pink);
       color: #ffffff !important;
       border: 2px solid var(--accent-pink);
       box-shadow: 0 0 15px rgba(255, 0, 85, 0.5);
     }
-
     .btn-pink:hover {
       background: transparent;
       color: var(--accent-pink) !important;
@@ -269,14 +334,12 @@
       transform: translateY(-3px);
     }
 
-    /* Button 2: Launch - Solid Cyan border with Cyan backing */
     .btn-cyan {
       background: rgba(0, 240, 255, 0.15);
       color: #00f0ff !important;
       border: 2px solid var(--accent-cyan);
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
     }
-
     .btn-cyan:hover {
       background: var(--accent-cyan);
       color: var(--bg-dark) !important;
@@ -284,14 +347,12 @@
       transform: translateY(-3px);
     }
 
-    /* Button 3: GTA Legacy - Solid Pink border with Pink backing */
     .btn-gta-legacy {
       background: rgba(255, 0, 85, 0.15);
       color: #ff0055 !important;
       border: 2px solid var(--accent-pink);
       box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
     }
-
     .btn-gta-legacy:hover {
       background: var(--accent-pink);
       color: #ffffff !important;
@@ -299,7 +360,6 @@
       transform: translateY(-3px);
     }
 
-    /* Button 4: Flashing Pulsing Launch Day Button */
     .btn-gta-cloud-event {
       background: rgba(255, 204, 0, 0.18) !important;
       border: 2px solid #ffcc00 !important;
@@ -307,10 +367,69 @@
       box-shadow: 0 0 15px rgba(255, 204, 0, 0.5) !important;
       animation: hypeBtnPulse 1.5s infinite alternate !important;
     }
-
     @keyframes hypeBtnPulse {
-      0% { transform: scale(1); box-shadow: 0 0 10px #ffcc00, 0 0 5px #ff0055; }
+      0%   { transform: scale(1);    box-shadow: 0 0 10px #ffcc00, 0 0 5px #ff0055; }
       100% { transform: scale(1.05); box-shadow: 0 0 25px #ffcc00, 0 0 15px #00f0ff; }
+    }
+
+    /* ── QUICK DOWNLOAD STRIP ── */
+    .quick-dl-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 0 0 60px 0;
+    }
+    .quick-dl-card {
+      background: rgba(16,8,42,0.88);
+      border-radius: 10px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      backdrop-filter: blur(8px);
+      text-decoration: none;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.07);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .quick-dl-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .quick-dl-card:hover { transform: translateY(-5px); }
+    .quick-dl-card.qd-torrent  { border-color: rgba(0,240,255,0.3); }
+    .quick-dl-card.qd-torrent::after  { background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan); }
+    .quick-dl-card.qd-torrent:hover   { border-color: var(--accent-cyan); box-shadow: 0 0 20px rgba(0,240,255,0.3); }
+    .quick-dl-card.qd-save    { border-color: rgba(0,255,136,0.3); }
+    .quick-dl-card.qd-save::after     { background: #00ff88; box-shadow: 0 0 10px #00ff88; }
+    .quick-dl-card.qd-save:hover      { border-color: #00ff88; box-shadow: 0 0 20px rgba(0,255,136,0.3); }
+    .quick-dl-card.qd-ext     { border-color: rgba(255,0,85,0.3); }
+    .quick-dl-card.qd-ext::after      { background: var(--accent-pink); box-shadow: 0 0 10px var(--accent-pink); }
+    .quick-dl-card.qd-ext:hover       { border-color: var(--accent-pink); box-shadow: 0 0 20px rgba(255,0,85,0.3); }
+    .quick-dl-icon { font-size: 32px; flex-shrink: 0; }
+    .quick-dl-info {}
+    .quick-dl-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 3px;
+      opacity: 0.6;
+    }
+    .quick-dl-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(12px,1.8vw,14px);
+      font-weight: 900;
+      line-height: 1.3;
+    }
+    .quick-dl-size {
+      font-size: 11px;
+      opacity: 0.5;
+      margin-top: 2px;
     }
 
     /* Game Running Line - Workflow Timeline */
@@ -742,12 +861,54 @@
         The ultimate GTA web launcher and virtual mobile phone mod. Load the game online instantly on the cloud and run your custom smartphone dashboard overlay to dial cheats, capture photo snapshots, and record gameplay videos directly inside Chrome.
       </p>
       <div class="cta-container">
-        <a href="download.html" class="btn btn-pink">⬇️ Download Full Pack</a>
-        <a href="https://quenq.com/play/9fa6d40cbabd8bfc416b30fa/" class="btn btn-cyan" target="_blank">Launch Game Online</a>
-        <a href="gta_legacy.html" class="btn btn-gta-legacy">GTA Legacy</a>
-        <a href="live_event.html" class="btn btn-gta-cloud-event">GTA VI Cloud Event</a>
+
+        <!-- ★ PRIMARY MEGA DOWNLOAD BUTTON ★ -->
+        <a href="download.html" class="btn-download-mega">
+          <span class="dl-arrow">⬇️</span>
+          DOWNLOAD VICE CITY — FREE FULL PACK
+        </a>
+
+        <!-- Secondary buttons row -->
+        <div class="cta-secondary-row">
+          <a href="https://quenq.com/play/9fa6d40cbabd8bfc416b30fa/" class="btn btn-cyan" target="_blank">🚀 Launch Game Online</a>
+          <a href="gta_legacy.html" class="btn btn-gta-legacy">📖 GTA Legacy</a>
+          <a href="live_event.html" class="btn btn-gta-cloud-event">🔥 GTA VI Cloud Event</a>
+        </div>
+
       </div>
     </section>
+
+    <!-- Quick Download Strip -->
+    <div class="quick-dl-strip vcc-3d-scroll-item">
+
+      <a href="downloads/Grand-Theft-Auto-Vice-City.torrent" download class="quick-dl-card qd-torrent">
+        <div class="quick-dl-icon">🧲</div>
+        <div class="quick-dl-info">
+          <div class="quick-dl-label">Step 1</div>
+          <div class="quick-dl-title">GTA Vice City<br>Torrent File</div>
+          <div class="quick-dl-size">13 KB • Opens in qBittorrent</div>
+        </div>
+      </a>
+
+      <a href="downloads/GTAVCsf1.b" download class="quick-dl-card qd-save">
+        <div class="quick-dl-icon">💾</div>
+        <div class="quick-dl-info">
+          <div class="quick-dl-label">Step 2</div>
+          <div class="quick-dl-title">100% Save File<br>$20M + All Weapons</div>
+          <div class="quick-dl-size">198 KB • Paste in User Files folder</div>
+        </div>
+      </a>
+
+      <a href="downloads/vice-city-cloud-mobile-trainer.zip" download class="quick-dl-card qd-ext">
+        <div class="quick-dl-icon">🌐</div>
+        <div class="quick-dl-info">
+          <div class="quick-dl-label">Alternative</div>
+          <div class="quick-dl-title">Browser Extension<br>Play Without Install</div>
+          <div class="quick-dl-size">469 KB • Load in Chrome</div>
+        </div>
+      </a>
+
+    </div>
 
     <!-- Game Running Line Section (Gameplay Workflow pipeline) -->
     <section id="running-line" class="running-line-section vcc-3d-scroll-item">
