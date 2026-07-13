@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GTA Legacy & Tribute - GTA VICELAUNCHER</title>
-  <meta name="description" content="Explore the legacy of GTA games from 2D classics to GTA VI. Showing love to Rockstar Games for their hard work. Powered by Mauxx AI.">
+  <title>GTA VI Cloud Live Event & YouTube Launch - GTA VICELAUNCHER</title>
+  <meta name="description" content="Join our upcoming YouTube channel launch and historic GTA VI live stream event. 5 PS5 setup, 1 host play, and cloud gaming access slots for selected viewers!">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
   
   <style>
@@ -13,6 +13,7 @@
       --bg-panel: rgba(17, 9, 44, 0.85);
       --accent-pink: #ff0055;
       --accent-cyan: #00f0ff;
+      --accent-yellow: #ffcc00;
       --text-main: #ffffff;
       --text-muted: #c2c2cf;
       --shadow-pink: 0 0 10px rgba(255, 0, 85, 0.4);
@@ -39,7 +40,7 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 120vh; /* slightly taller to cover parallax translation overflow */
+      height: 120vh;
       z-index: -3;
       background-size: cover;
       background-position: center;
@@ -141,7 +142,7 @@
     .vcc-3d-scroll-item {
       opacity: 0;
       transform: perspective(1000px) rotateX(12deg) translateY(35px) scale(0.96);
-      transition: opacity 0.8s ease-out, transform 0.1s linear; /* quick linear transform transition for smooth scrolling micro-tilts */
+      transition: opacity 0.8s ease-out, transform 0.1s linear;
       will-change: transform, opacity;
     }
 
@@ -149,13 +150,13 @@
       opacity: 1;
     }
 
-    /* Tribute Block styling */
-    .tribute-header {
+    /* Event Header */
+    .event-header {
       text-align: center;
       padding: 60px 0 30px 0;
     }
 
-    .tribute-title {
+    .event-title {
       font-family: 'Orbitron', sans-serif;
       font-size: 40px;
       font-weight: 900;
@@ -166,45 +167,55 @@
       text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
     }
 
-    .tribute-intro {
+    .event-badge {
+      display: inline-block;
+      border: 1px solid var(--accent-pink);
+      box-shadow: var(--shadow-pink);
+      color: var(--accent-pink);
+      font-weight: bold;
+      font-size: 12px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      background: rgba(255, 0, 85, 0.05);
+    }
+
+    .event-intro {
       font-size: 18px;
       color: #ffe8f4;
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
       line-height: 1.6;
-      background: rgba(255, 0, 85, 0.1);
-      border: 1px solid var(--accent-pink);
-      box-shadow: var(--shadow-pink);
-      padding: 25px;
-      border-radius: 8px;
-      backdrop-filter: blur(5px);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     }
 
-    /* GTA VI Feature Poster card */
-    .gta6-showcase-section {
-      margin: 50px 0 80px 0;
+    /* Stream Setup Card Showcase */
+    .setup-showcase-section {
+      margin-bottom: 60px;
     }
 
-    .gta6-card {
+    .setup-card {
       background: var(--bg-panel);
-      border: 2px solid var(--accent-pink);
+      border: 2px solid var(--accent-cyan);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: var(--shadow-pink);
+      box-shadow: var(--shadow-cyan);
       backdrop-filter: blur(5px);
     }
 
-    .gta6-image-container {
+    .setup-image-container {
       width: 100%;
       height: auto;
       max-height: 520px;
       overflow: hidden;
-      border-bottom: 2px solid var(--accent-pink);
+      border-bottom: 2px solid var(--accent-cyan);
       background: #000;
     }
 
-    .gta6-image-container img {
+    .setup-image-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -212,121 +223,156 @@
       transition: transform 0.5s ease;
     }
 
-    .gta6-card:hover .gta6-image-container img {
+    .setup-card:hover .setup-image-container img {
       transform: scale(1.02);
     }
 
-    .gta6-info {
-      padding: 35px;
+    /* Channel Teaser Banner */
+    .channel-teaser {
+      background: linear-gradient(90deg, rgba(22, 10, 54, 0.9) 0%, rgba(47, 18, 84, 0.9) 50%, rgba(22, 10, 54, 0.9) 100%);
+      border: 1.5px solid var(--accent-pink);
+      border-radius: 12px;
+      padding: 40px;
       text-align: center;
+      margin-bottom: 60px;
+      box-shadow: var(--shadow-pink);
+      backdrop-filter: blur(5px);
     }
 
-    .gta6-badge {
-      display: inline-block;
-      border: 1px solid var(--accent-cyan);
-      box-shadow: var(--shadow-cyan);
-      color: var(--accent-cyan);
-      font-weight: bold;
-      font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-      background: rgba(0, 240, 255, 0.05);
-    }
-
-    .gta6-headline {
+    .channel-teaser h2 {
       font-family: 'Orbitron', sans-serif;
       font-size: 28px;
-      font-weight: 900;
-      color: var(--accent-cyan);
+      color: #ffffff;
       margin-bottom: 10px;
-      text-shadow: var(--shadow-cyan);
+      letter-spacing: 1px;
     }
 
-    .gta6-body {
-      font-size: 16px;
+    .channel-teaser p {
       color: var(--text-muted);
-      max-width: 750px;
-      margin: 0 auto;
+      max-width: 650px;
+      margin: 0 auto 20px auto;
+      font-size: 15px;
     }
 
-    /* Legacy games timeline list */
-    .section-title {
+    .channel-status {
       font-family: 'Orbitron', sans-serif;
-      text-align: center;
-      font-size: 32px;
-      margin-bottom: 40px;
-      text-transform: uppercase;
-      position: relative;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--accent-pink);
+      text-shadow: var(--shadow-pink);
+      letter-spacing: 2px;
+      margin-bottom: 15px;
     }
 
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-pink);
-      margin: 10px auto 0 auto;
-      box-shadow: var(--shadow-pink);
-    }
-
-    .legacy-grid {
+    /* Event Specifications Grid */
+    .specs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
-      margin-bottom: 80px;
+      margin-bottom: 60px;
     }
 
-    .game-card {
+    .spec-card {
       background: var(--bg-panel);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 8px;
       padding: 25px;
-      transition: all 0.25s ease-out;
       backdrop-filter: blur(5px);
+      transition: all 0.2s;
     }
 
-    .game-card:hover {
-      transform: translateY(-5px);
+    .spec-card:hover {
       border-color: var(--accent-cyan);
       box-shadow: var(--shadow-cyan);
     }
 
-    .game-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding-bottom: 8px;
+    .spec-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
     }
 
-    .game-title {
+    .spec-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-main);
-      max-width: 70%;
+      font-size: 18px;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
     }
 
-    .game-year {
+    .spec-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Email form */
+    .signup-form-section {
+      background: var(--bg-panel);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      margin-bottom: 80px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .signup-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 12px;
-      font-weight: bold;
-      color: var(--accent-pink);
-      text-shadow: var(--shadow-pink);
-    }
-
-    .game-icon {
       font-size: 24px;
       margin-bottom: 10px;
     }
 
-    .game-desc {
-      font-size: 13.5px;
+    .signup-desc {
       color: var(--text-muted);
+      margin-bottom: 25px;
+      font-size: 15px;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .form-input {
+      flex-grow: 1;
+      min-width: 260px;
+      background: #09041a;
+      border: 1.5px solid var(--accent-pink);
+      color: white;
+      font-size: 16px;
+      font-family: 'Rajdhani', sans-serif;
+      padding: 12px 20px;
+      border-radius: 6px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .form-btn {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 6px;
+      background: var(--accent-pink);
+      color: white;
+      border: 2px solid var(--accent-pink);
+      box-shadow: var(--shadow-pink);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .form-btn:hover {
+      background: transparent;
+      color: var(--accent-pink);
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.8);
     }
 
     /* Footer */
@@ -365,117 +411,72 @@
   <header>
     <div class="container nav-bar">
       <a href="index.html" class="logo-brand">GTA<span>VICELAUNCHER</span></a>
-      <div style="display: flex; gap: 15px;">
-        <a href="live_event.html" class="back-btn" style="border-color: var(--accent-pink); color: var(--accent-pink); box-shadow: var(--shadow-pink);">Live Event</a>
-        <a href="index.html" class="back-btn">← Back to Launcher</a>
-      </div>
+      <a href="index.html" class="back-btn">← Back to Launcher</a>
     </div>
   </header>
 
   <div class="container" style="position: relative; z-index: 10;">
     
-    <!-- Tribute Header -->
-    <section class="tribute-header vcc-3d-scroll-item">
-      <h1 class="tribute-title">Grand Theft Auto Legacy</h1>
-      <p class="tribute-intro">
-        "A heartfelt thank you to Rockstar Games for working so hard over the past decades to build these legendary open worlds. Your games have defined generations, sparked endless creativity, and made our digital worlds so amazing!"
+    <!-- Event Header -->
+    <section class="event-header vcc-3d-scroll-item">
+      <div class="event-badge">Upcoming Cloud Event</div>
+      <h1 class="event-title">GTA VI Cloud Stream Event</h1>
+      <p class="event-intro">
+        Get ready for a historic interactive gaming event. We are launching an official gaming channel and hosting a live stream where viewers can play GTA VI directly from their laptops using cloud streaming!
       </p>
     </section>
 
-    <!-- GTA VI Tribute Section -->
-    <section class="gta6-showcase-section vcc-3d-scroll-item">
-      <div class="gta6-card">
-        <div class="gta6-image-container">
-          <img src="images/gta_vi_tribute.jpg" alt="GTA VI Tribute Poster">
-        </div>
-        <div class="gta6-info">
-          <div class="gta6-badge">Vice City Returns</div>
-          <h2 class="gta6-headline">Showing Love for GTA VI</h2>
-          <p class="gta6-body">
-            Anticipation is at an all-time high as we prepare to return to next-gen Vice City! The breathtaking neon shorelines, tropical beach horizons, and dual-protagonist mechanics of Lucia and Jason are set to make history. This project is a tribute to the legacy that started it all.
-          </p>
+    <!-- YouTube channel Teaser -->
+    <section class="channel-teaser vcc-3d-scroll-item">
+      <h2>YouTube Gaming Channel</h2>
+      <div class="channel-status">[ Official Channel Name Coming Soon ]</div>
+      <p>
+        Our official streaming channel is launching very soon! Subscribe to catch daily speedruns, mod launcher updates, and join our regular cloud gaming tournaments where we select viewers to play directly.
+      </p>
+    </section>
+
+    <!-- Setup Showcase Banner -->
+    <section class="setup-showcase-section vcc-3d-scroll-item">
+      <div class="setup-card">
+        <div class="setup-image-container">
+          <img src="images/stream_setup.jpg" alt="Stream Setup">
         </div>
       </div>
     </section>
 
-    <!-- Legacy Timeline Grid -->
+    <!-- Event Specifications Grid -->
     <section>
-      <h2 class="section-title vcc-3d-scroll-item">Evolution of the GTA Universe</h2>
-      <div class="legacy-grid">
+      <div class="specs-grid">
         
-        <div class="game-card vcc-3d-scroll-item">
-          <div class="game-header">
-            <h3 class="game-title">Grand Theft Auto</h3>
-            <span class="game-year">1997</span>
-          </div>
-          <div class="game-icon">🚕</div>
-          <p class="game-desc">The retro 2D top-down legacy that started it all, introducing high-speed carjacking runs and sandbox freedom across Liberty City, San Andreas, and Vice City.</p>
+        <div class="spec-card vcc-3d-scroll-item">
+          <div class="spec-icon">🎮</div>
+          <h3 class="spec-title">5 PlayStation 5 Setup</h3>
+          <p class="spec-desc">We are linking five PS5 consoles inside our streaming studio. One console will host the main live stream, and the other four are connected to cloud play nodes.</p>
         </div>
 
-        <div class="game-card vcc-3d-scroll-item">
-          <div class="game-header">
-            <h3 class="game-title">Grand Theft Auto 2</h3>
-            <span class="game-year">1999</span>
-          </div>
-          <div class="game-icon">⚡</div>
-          <p class="game-desc">Set in a futuristic metropolis, this top-down classic introduced the respect meter, forcing players to manage reputation with rival gang syndicates.</p>
+        <div class="spec-card vcc-3d-scroll-item">
+          <div class="spec-icon">🌐</div>
+          <h3 class="spec-title">Cloud Trial Slots</h3>
+          <p class="spec-desc">No downloads or console needed! Selected stream viewers will receive a direct access link to connect remotely and play GTA VI on their laptop for 30 minutes to 1 hour.</p>
         </div>
 
-        <div class="game-card vcc-3d-scroll-item">
-          <div class="game-header">
-            <h3 class="game-title">Grand Theft Auto III</h3>
-            <span class="game-year">2001</span>
-          </div>
-          <div class="game-icon">🌆</div>
-          <p class="game-desc">The revolutionary shift to full 3D. Liberty City became a living, breathing sandbox, setting the standard for all modern open-world video games.</p>
-        </div>
-
-        <div class="game-card vcc-3d-scroll-item">
-          <div class="game-header">
-            <h3 class="game-title">GTA: Vice City</h3>
-            <span class="game-year">2002</span>
-          </div>
-          <div class="game-icon">🌴</div>
-          <p class="game-desc">Tommy Vercetti's rise to power in a retro 80s neon paradise. Styled with legendary synthwave radio stations and Miami hotel backdrops.</p>
-        </div>
-
-        <div class="game-card vcc-3d-scroll-item">
-          <div class="game-header">
-            <h3 class="game-title">GTA: San Andreas</h3>
-            <span class="game-year">2004</span>
-          </div>
-          <div class="game-icon">🚲</div>
-          <p class="game-desc">CJ, Grove Street, and a massive state containing Los Santos, San Fierro, and Las Venturas. Set a benchmark in character customization and map scale.</p>
-        </div>
-
-        <div class="game-card vcc-3d-scroll-item">
-          <div class="game-header">
-            <h3 class="game-title">Grand Theft Auto IV</h3>
-            <span class="game-year">2008</span>
-          </div>
-          <div class="game-icon">🌉</div>
-          <p class="game-desc">Niko Bellic and the dark, gritty realism of modern Liberty City. Features cutting-edge physics and mature narrative storytelling.</p>
-        </div>
-
-        <div class="game-card vcc-3d-scroll-item">
-          <div class="game-header">
-            <h3 class="game-title">Grand Theft Auto V</h3>
-            <span class="game-year">2013</span>
-          </div>
-          <div class="game-icon">💵</div>
-          <p class="game-desc">The record-breaking masterpiece featuring three playable characters (Michael, Franklin, Trevor) in modern Los Santos, and the massive GTA Online universe.</p>
-        </div>
-
-        <div class="game-card vcc-3d-scroll-item">
-          <div class="game-header">
-            <h3 class="game-title">Grand Theft Auto VI</h3>
-            <span class="game-year">TBA</span>
-          </div>
-          <div class="game-icon">🌅</div>
-          <p class="game-desc">Lucia, Jason, and the next-generation return to Leonida/Vice City. Set to push the boundaries of immersive gaming tech to their limits.</p>
+        <div class="spec-card vcc-3d-scroll-item">
+          <div class="spec-icon">🏆</div>
+          <h3 class="spec-title">Play Games to Win</h3>
+          <p class="spec-desc">How to get access? We will host custom mini-games and viewer quiz trivia tournaments live on stream to select players for the cloud trial slots.</p>
         </div>
 
       </div>
+    </section>
+
+    <!-- Signup Form -->
+    <section class="signup-form-section vcc-3d-scroll-item">
+      <h2 class="signup-title">Get Notified & Reserve Slots</h2>
+      <p class="signup-desc">Enter your email below to receive instant launch updates, get notified when the channel goes live, and gain early priority for the cloud gaming slots.</p>
+      <form class="form-row" onsubmit="event.preventDefault(); alert('Success! You are on the priority list. Check your email for updates soon!'); this.reset();">
+        <input type="email" class="form-input" placeholder="Enter your email address" required>
+        <button type="submit" class="form-btn">Join Priority List</button>
+      </form>
     </section>
 
   </div>
@@ -527,7 +528,6 @@
         const viewCenter = viewportHeight / 2;
         const distanceFromCenter = (itemCenter - viewCenter) / viewCenter;
         
-        // Tilt the card dynamically on rotateX and scale down slightly at screen edges
         const tilt = Math.max(-12, Math.min(12, distanceFromCenter * 10));
         const scale = Math.max(0.96, Math.min(1.04, 1 - Math.abs(distanceFromCenter) * 0.04));
         
