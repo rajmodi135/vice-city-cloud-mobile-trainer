@@ -40,20 +40,20 @@
       overflow-x: hidden;
     }
 
-    /* Fixed Slideshow Background Elements with Will-Change support */
+    /* Frozen Fixed Background Slide Elements */
     .vcc-bg-slide {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
-      height: 120vh;
+      height: 100vh;
       z-index: -3;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       transition: opacity 1.5s ease-in-out;
       pointer-events: none;
-      will-change: transform, opacity;
+      will-change: opacity;
       background-color: var(--bg-dark);
     }
 
@@ -531,7 +531,7 @@
       });
     });
 
-    // Throttled 3D Scroll Motion & Parallax Engine via requestAnimationFrame
+    // Throttled 3D Scroll Motion via requestAnimationFrame (Background parallax translations removed)
     let ticking = false;
     window.addEventListener("scroll", () => {
       if (!ticking) {
@@ -544,14 +544,6 @@
     }, { passive: true });
 
     function updateScrollPhysics() {
-      const scrolled = window.pageYOffset;
-      
-      // Parallax Background shift
-      const bg1 = document.getElementById("vcc-bg-slideshow-1");
-      const bg2 = document.getElementById("vcc-bg-slideshow-2");
-      if (bg1) bg1.style.transform = `translateY(${scrolled * 0.12}px) translateZ(0)`;
-      if (bg2) bg2.style.transform = `translateY(${scrolled * 0.12}px) translateZ(0)`;
-      
       // 3D Tilt on scroll position relative to viewport center
       const viewportHeight = window.innerHeight;
       const scrollItems = document.querySelectorAll(".vcc-3d-scroll-item.visible");
