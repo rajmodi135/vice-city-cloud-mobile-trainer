@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "GTA Vercetti OS - Cloud Play & Mod Launcher",
-  "version": "1.1.4",
+  "name": "GTA VICELAUNCHER - Cloud Play & Mod Launcher",
+  "version": "1.1.5",
   "description": "Chrome Cloud Play Launcher & smartphone mod for GTA Vice City",
   "permissions": [
     "tabs",
