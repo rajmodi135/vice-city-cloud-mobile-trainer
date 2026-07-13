@@ -4,6 +4,7 @@ console.log("[Trainer Extension] content.js loading context...");
 
 const CHEATS = [
   {"action": "[ TOGGLE GRID MODE ]", "code": "TOGGLE_LAYOUT", "key_char": "", "grid_name": "GRID VIEW", "icon": "📋"},
+  {"action": "[ TOGGLE THEATER MODE ]", "code": "ACTION_THEATER", "key_char": "", "grid_name": "THEATER", "icon": "📺"},
   {"action": "[ CAMERA: TAKE PHOTO ]", "code": "ACTION_PHOTO", "key_char": "", "grid_name": "CAMERA", "icon": "📸"},
   {"action": "[ CAMERA: RECORD VIDEO ]", "code": "ACTION_RECORD", "key_char": "", "grid_name": "RECORDER", "icon": "📹"},
   {"action": "Full Health", "code": "aspirine", "key_char": "h", "grid_name": "HEALTH", "icon": "❤️"},
@@ -508,6 +509,13 @@ if (isGameFrame) {
           return;
         }
 
+        // Handle Theater Mode Custom Actions
+        if (selectedCheat.code === "ACTION_THEATER") {
+          playMenuSound("select");
+          toggleTheaterMode();
+          return;
+        }
+
         // Handle Camera Custom Actions
         if (selectedCheat.code === "ACTION_PHOTO") {
           playMenuSound("shutter");
@@ -795,3 +803,97 @@ function triggerCameraRecordStop() {
     iconsEl.style.color = "";
   }
 }
+
+// Toggles maximized browser-tab pseudo-fullscreen layout
+let theaterActive = false;
+function toggleTheaterMode() {
+  theaterActive = !theaterActive;
+  
+  const gameElement = document.querySelector("iframe") || document.querySelector("canvas") || document.querySelector("embed");
+  
+  if (!gameElement) {
+    console.warn("[GTA VICELAUNCHER] No active game element target found for Theater Mode.");
+    return;
+  }
+  
+  if (theaterActive) {
+    gameElement.classList.add("vcc-theater-target");
+    document.body.classList.add("vcc-theater-active");
+    
+    // Relocate overlay inside parent container so it sits on top in layout flow
+    const phoneContainer = document.getElementById("vcc-phone-hud-container");
+    if (phoneContainer && gameElement.parentElement) {
+      gameElement.parentElement.appendChild(phoneContainer);
+    }
+    
+    console.log("[GTA VICELAUNCHER] Theater Mode Enabled.");
+  } else {
+    gameElement.classList.remove("vcc-theater-target");
+    document.body.classList.remove("vcc-theater-active");
+    
+    // Restore overlay back to document body
+    const phoneContainer = document.getElementById("vcc-phone-hud-container");
+    if (phoneContainer) {
+      document.body.appendChild(phoneContainer);
+    }
+    
+    console.log("[GTA VICELAUNCHER] Theater Mode Disabled.");
+  }
+}
+
+// Binds native fullscreen listeners to dynamically relocate overlays
+document.addEventListener("fullscreenchange", () => {
+  const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
+  const phoneContainer = document.getElementById("vcc-phone-hud-container");
+  const promptBadge = document.getElementById("vcc-top-left-badge");
+  
+  if (fsElement) {
+    console.log("[GTA VICELAUNCHER] Native fullscreen detected on:", fsElement.tagName);
+    
+    // If the browser went fullscreen on a canvas/iframe leaf element directly,
+    // redirect native fullscreen to its parent container to host overlay DOM elements.
+    if ((fsElement.tagName === "CANVAS" || fsElement.tagName === "IFRAME") && fsElement.parentElement && !fsElement.dataset.fsRedirected) {
+      const parent = fsElement.parentElement;
+      fsElement.dataset.fsRedirected = "true";
+      
+      fsElement.style.width = "100%";
+      fsElement.style.height = "100%";
+      fsElement.style.position = "absolute";
+      fsElement.style.top = "0";
+      fsElement.style.left = "0";
+      
+      document.exitFullscreen().then(() => {
+        parent.requestFullscreen().catch(err => {
+          console.error("[GTA VICELAUNCHER] Parent fullscreen redirection failed:", err);
+        });
+      });
+      return;
+    }
+    
+    // Append overlays directly inside the active fullscreen container element
+    if (phoneContainer) {
+      fsElement.appendChild(phoneContainer);
+    }
+    if (promptBadge) {
+      fsElement.appendChild(promptBadge);
+    }
+  } else {
+    // Left fullscreen, restore overlay elements back to main document body
+    const body = document.body;
+    if (phoneContainer) {
+      body.appendChild(phoneContainer);
+    }
+    if (promptBadge) {
+      body.appendChild(promptBadge);
+    }
+    
+    // Reset sizing overrides
+    document.querySelectorAll("[data-fs-redirected]").forEach(el => {
+      el.removeAttribute("data-fs-redirected");
+      el.style.width = "";
+      el.style.height = "";
+      el.style.position = "";
+    });
+  }
+});
+
