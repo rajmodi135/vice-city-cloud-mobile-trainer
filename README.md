@@ -1,5 +1,5 @@
-# 🎮 GTA Vice City Cloud Mobile Trainer Extension
-> Play GTA Vice City on the cloud with a built-in virtual smartphone trainer HUD. Works on any laptop instantly without installing game files or downloads.
+# 🎮 GTA Vice City Cloud Mobile Trainer Pro (Play Online & Mod Free)
+> Play GTA Vice City online directly in your browser with a virtual smartphone trainer HUD. Works instantly on any laptop/PC (Windows, macOS, Linux) without downloading gigabytes of game files or setting up local assets.
 
 ---
 
@@ -10,6 +10,19 @@
 <p align="center">
   <strong>POWERED BY MAUXX AI</strong>
 </p>
+
+---
+
+## 🔍 SEO & Search Keywords (Why Use This Mod?)
+
+If you are looking for:
+* **GTA Vice City download pc** (get the modern online playing experience for free!)
+* **Play GTA Vice City online** in-browser with zero download or installation issues.
+* **GTA Vice City cheats** (full list including health, armor, weapons, tanks, and flying cars).
+* **GTA Vice City download free** (skip heavy files, use cloud emulation).
+* **GTA Vice City online emulator** (play on Chrome on Chromebooks, low-end laptops, or Kali Linux).
+
+This extension is the ultimate tool. It embeds a complete mobile mod into your browser game session, providing full trainer capabilities inside the active gameplay frame.
 
 ---
 
@@ -29,15 +42,25 @@
 
 ---
 
-## 🎮 How to Control the Phone
+## 🕹️ Controls Guide (Arrows & Enter Only)
 
-1. **Open Phone**: Press the **Up Arrow (`ArrowUp`)** key when the phone is closed. (A helpful pulsating guide will appear in the top-left corner on load, then self-destruct once opened).
+Make sure you are playing with **W/A/S/D** keyboard controls for moving and driving Tommy Vercetti so it doesn't conflict with key mapping.
+
+1. **Pull Out the Phone**: Press the **Up Arrow (`ArrowUp`)** key.
 2. **Navigate**:
    - **List Mode**: Use **Up/Down Arrow** keys.
    - **Grid Mode**: Use **Left/Right/Up/Down Arrow** keys.
 3. **Dial/Trigger Cheat**: Press **Enter** on your highlighted cheat or tool.
 4. **Layout Toggle**: Press Enter on **`[ TOGGLE GRID MODE ]`** (or select the `📋` icon in the grid) to switch views.
 5. **Put Away Phone**: Press **Backspace** or **Escape** to slide the phone down.
+
+---
+
+## ⚡ Pro Tips for Gamers (Easy Troubleshooting)
+
+* **If the Up Arrow key doesn't open the phone**: Click inside the game screen first to focus the tab so Chrome can route keypress events directly into the Wasm emulator context.
+* **If it shows the old Tekken HUD**: Clear your browser cache! Google Chrome heavily caches content scripts. Go to `chrome://extensions/`, click **Remove** on the trainer card, close the tab, load unpacked again, and open the game in a brand new tab to force Chrome to load the fresh phone code.
+* **Smooth Gameplay**: If you experience framerate drops, reload to version `v1.1.3` or higher. We removed expensive CSS backdrop-blur filter processes to restore stable 60FPS performance on all low-end laptops.
 
 ---
 
@@ -49,6 +72,7 @@ Since this is a Chrome Extension, there is **zero file downloading** or game ins
    ```bash
    git clone https://github.com/rajmodi135/vice-city-cloud-mobile-trainer.git
    ```
+   *(Alternatively, download the release ZIP file directly from the website)*
 2. **Load the Unpacked Extension in Chrome**:
    - Open Google Chrome and go to **`chrome://extensions/`**.
    - Enable **Developer mode** using the toggle switch in the top-right corner.

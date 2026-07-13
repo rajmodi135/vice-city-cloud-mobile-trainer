@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTA Vice City Cloud Mobile Trainer Pro - Play Online & Mod Free</title>
+  <meta name="description" content="Play GTA Vice City online on cloud emulators with a virtual smartphone trainer HUD. Free download cheats, take snaps, and record videos. Powered by Mauxx AI.">
+  <meta name="keywords" content="gta vice city download pc, play gta vice city online, gta vice city cheats, gta vice city cloud play, gta vice city trainer extension, mauxx ai">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #070314;
+      --bg-panel: #11092c;
+      --accent-pink: #ff0055;
+      --accent-cyan: #00f0ff;
+      --accent-yellow: #ffcc00;
+      --text-main: #ffffff;
+      --text-muted: #8c8c9a;
+      --shadow-pink: 0 0 10px rgba(255, 0, 85, 0.4);
+      --shadow-cyan: 0 0 10px rgba(0, 240, 255, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at top, #19093a 0%, #070314 100%);
+      color: var(--text-main);
+      font-family: 'Rajdhani', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-pink);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-cyan);
+    }
+
+    /* Layout Containers */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    header {
+      border-bottom: 2px solid var(--accent-pink);
+      box-shadow: 0 4px 20px rgba(255, 0, 85, 0.15);
+      background: rgba(11, 5, 28, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    .logo-brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      font-style: italic;
+      color: var(--accent-pink);
+      text-shadow: var(--shadow-pink);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .logo-brand span {
+      color: var(--accent-cyan);
+      text-shadow: var(--shadow-cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-cyan);
+      text-shadow: var(--shadow-cyan);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: 80px 0 40px 0;
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 0, 85, 0.15) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--accent-cyan);
+      box-shadow: var(--shadow-cyan);
+      color: var(--accent-cyan);
+      font-weight: bold;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      background: rgba(0, 240, 255, 0.05);
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 48px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+    }
+
+    .cta-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn-pink {
+      background: var(--accent-pink);
+      color: white;
+      border: 2px solid var(--accent-pink);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .btn-pink:hover {
+      background: transparent;
+      color: var(--accent-pink);
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.8);
+    }
+
+    .btn-cyan {
+      background: transparent;
+      color: var(--accent-cyan);
+      border: 2px solid var(--accent-cyan);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .btn-cyan:hover {
+      background: var(--accent-cyan);
+      color: var(--bg-dark);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+    }
+
+    /* Features Grid */
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--accent-pink);
+      margin: 10px auto 0 auto;
+      box-shadow: var(--shadow-pink);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background: var(--bg-panel);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 30px;
+      transition: all 0.2s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-pink);
+      box-shadow: var(--shadow-pink);
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    .feature-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: var(--accent-cyan);
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Mauxx AI branding showcase */
+    .branding-banner {
+      background: linear-gradient(90deg, #160a36 0%, #2f1254 50%, #160a36 100%);
+      border: 1.5px solid var(--accent-pink);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      margin-bottom: 80px;
+      box-shadow: var(--shadow-pink);
+    }
+
+    .branding-banner h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .branding-banner p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      font-size: 15px;
+    }
+
+    .branding-highlight {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--accent-pink);
+      text-shadow: var(--shadow-pink);
+      letter-spacing: 2px;
+    }
+
+    /* Interactive Cheat Finder Section */
+    .cheat-section {
+      background: var(--bg-panel);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      margin-bottom: 80px;
+    }
+
+    .cheat-search-container {
+      margin-bottom: 25px;
+      display: flex;
+      gap: 15px;
+    }
+
+    #search-box {
+      flex-grow: 1;
+      background: #09041a;
+      border: 1.5px solid var(--accent-pink);
+      color: white;
+      font-size: 16px;
+      font-family: 'Rajdhani', sans-serif;
+      padding: 12px 20px;
+      border-radius: 6px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    #search-box:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .cheat-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 15px;
+    }
+
+    .cheat-item {
+      background: #09041a;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent-cyan);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cheat-label {
+      font-weight: bold;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .cheat-code {
+      font-family: monospace;
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--accent-pink);
+    }
+
+    /* Installation Section */
+    .install-section {
+      margin-bottom: 80px;
+    }
+
+    .step-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .step-card {
+      background: var(--bg-panel);
+      padding: 25px;
+      border-radius: 8px;
+      border-top: 3px solid var(--accent-pink);
+    }
+
+    .step-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--accent-pink);
+      margin-bottom: 10px;
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-bottom: 80px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .faq-item {
+      background: var(--bg-panel);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 18px 25px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: background-color 0.2s;
+    }
+
+    .faq-question:hover {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .faq-answer {
+      padding: 0 25px;
+      max-height: 0;
+      overflow: hidden;
+      color: var(--text-muted);
+      font-size: 15px;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 18px 25px;
+      max-height: 200px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .faq-toggle-icon {
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 2px solid var(--accent-pink);
+      background: #05020f;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .footer-branding {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent-pink);
+      font-weight: bold;
+      letter-spacing: 1px;
+      font-size: 15px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 32px;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-bar">
+      <a href="#" class="logo-brand">VICE<span>TRAINER</span></a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#cheats">Cheats Table</a></li>
+        <li><a href="#install">How to Load</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-badge">No Downloads Required • Play in Browser</div>
+      <h1 class="hero-title">GTA Vice City Cloud Mobile Trainer</h1>
+      <p class="hero-subtitle">
+        Inject an interactive GTA V-style mobile phone mod directly into any GTA Vice City cloud play tab. Select cheats, snap screen photos, and capture video runs directly inside Chrome on any laptop instantly.
+      </p>
+      <div class="cta-container">
+        <a href="vice-city-cloud-mobile-trainer.zip" class="btn btn-pink" download>Download ZIP Extension</a>
+        <a href="https://quenq.com/play/9fa6d40cbabd8bfc416b30fa/" class="btn btn-cyan" target="_blank">Launch Game Online</a>
+      </div>
+    </section>
+
+    <!-- Branding Banner -->
+    <section class="branding-banner">
+      <h2>Advanced Cloud Modding Engine</h2>
+      <p>Seamless frame injection, high-priority keyboard input capture, and Web Audio DTMF dial synthesizer built for premium cloud emulator gaming.</p>
+      <div class="branding-highlight">POWERED BY MAUXX AI</div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" style="padding-top: 40px;">
+      <h2 class="section-title">Trainer Capabilities</h2>
+      <div class="features-grid">
+        
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3 class="feature-name">GTA V Smartphone HUD</h3>
+          <p class="feature-desc">Press Up Arrow to open a beautiful silver-blue smartphone overlay in the bottom-right corner of the active game viewport.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3 class="feature-name">Grid & List Layouts</h3>
+          <p class="feature-desc">Toggle between standard list menus or a gorgeous 2D app-style dashboard with descriptive emojis for all cheat categories.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📸</div>
+          <h3 class="feature-name">Camera & Screen Recorder</h3>
+          <p class="feature-desc">Trigger instant PNG gameplay screenshots or capture high-resolution WebM video runs directly from the phone list.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔊</div>
+          <h3 class="feature-name">Retro DTMF Audio Synths</h3>
+          <p class="feature-desc">Hear retro telephone touch key dial beeps and shutter snap clicks synthesized locally via browser Web Audio contexts.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3 class="feature-name">0% GPU Render Lag</h3>
+          <p class="feature-desc">Optimized stylesheets remove backdrop filter overloads to ensure your cloud gaming frame rate stays at a solid 60FPS.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💻</div>
+          <h3 class="feature-name">Any Laptop, No Downloads</h3>
+          <p class="feature-desc">Works 100% inside web emulators without downloading gigabytes of game assets or setting up local files.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Cheat Search Finder -->
+    <section id="cheats" class="cheat-section">
+      <h2 class="section-title">Built-in Cheat Codes</h2>
+      <div class="cheat-search-container">
+        <input type="text" id="search-box" placeholder="Filter cheats... (e.g. health, weapons, panzer)" oninput="filterCheats()">
+      </div>
+      <div id="cheat-grid" class="cheat-list">
+        <!-- Generated Dynamically -->
+      </div>
+    </section>
+
+    <!-- How to Load -->
+    <section id="install" class="install-section">
+      <h2 class="section-title">How to Install and Load</h2>
+      <div class="step-list">
+        
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Download and Extract</h3>
+          <p class="step-desc">Click the "Download ZIP" button at the top to download the extension. Extract it into a local directory on your PC.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Load Unpacked Extension</h3>
+          <p class="step-desc">Open Chrome and navigate to <code>chrome://extensions/</code>. Turn on "Developer mode" (top-right) and click "Load unpacked" (top-left) to load the folder.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Open Game & Play</h3>
+          <p class="step-desc">Go to the cloud game tab, click inside the gameplay window to focus it, and press the Up Arrow key to open the virtual smartphone!</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section id="faq" class="faq-section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Why is the Up Arrow key not showing the phone?
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Make sure you have clicked inside the game canvas to focus the tab. Also check that you have reloaded the extension card inside chrome://extensions/ and hard-refreshed the game page to clear Google Chrome's old script cache.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Where do screenshots and recorded videos go?
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          They are saved locally and downloaded directly onto your laptop's standard "Downloads" folder as high-quality PNGs or WebM video files.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Does this trainer lag or block movement controls?
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          No. Movement utilizes standard W/A/S/D keys. When the virtual phone is open, arrow key presses are intercepted by the trainer, and the game controls pause until you select a cheat or close the phone.
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="footer-text">GTA Vice City Cloud Mobile Trainer Pro • Open Source Project</p>
+      <div class="footer-branding">POWERED BY MAUXX AI</div>
+    </div>
+  </footer>
+
+  <script>
+    const CHEATS_DATA = [
+      { name: "Full Health", code: "aspirine" },
+      { name: "Full Armor", code: "preciousprotection" },
+      { name: "Weapons Pack 1", code: "thugstools" },
+      { name: "Weapons Pack 2", code: "professionaltools" },
+      { name: "Weapons Pack 3", code: "nuttertools" },
+      { name: "Lower Wanted Level", code: "leavemealone" },
+      { name: "Raise Wanted Level", code: "youwonttakemealive" },
+      { name: "Spawn Rhino (Tank)", code: "panzer" },
+      { name: "Spawn Sabre Turbo", code: "gettherefast" },
+      { name: "Spawn Hotring Racer", code: "getthereamazinglyfast" },
+      { name: "Spawn Love Fist Limo", code: "rockandrollcar" },
+      { name: "Drive on Water", code: "seaways" },
+      { name: "Flying Cars", code: "comeflywithme" },
+      { name: "Perfect Handling", code: "gripiseverything" },
+      { name: "Blow Up Cars", code: "bigbang" },
+      { name: "Clear Weather", code: "alovelyday" },
+      { name: "Speed Up Game", code: "ontherunway" },
+      { name: "Slow Down Game", code: "booooooring" }
+    ];
+
+    function renderCheats(data) {
+      const grid = document.getElementById("cheat-grid");
+      grid.innerHTML = "";
+      data.forEach(cheat => {
+        const div = document.createElement("div");
+        div.className = "cheat-item";
+        div.innerHTML = `
+          <span class="cheat-label">${cheat.name}</span>
+          <span class="cheat-code">${cheat.code.toUpperCase()}</span>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    function filterCheats() {
+      const query = document.getElementById("search-box").value.toLowerCase();
+      const filtered = CHEATS_DATA.filter(c => 
+        c.name.toLowerCase().includes(query) || 
+        c.code.toLowerCase().includes(query)
+      );
+      renderCheats(filtered);
+    }
+
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      item.classList.toggle("active");
+    }
+
+    // Initial render
+    renderCheats(CHEATS_DATA);
+  </script>
+</body>
+</html>
