@@ -35,19 +35,20 @@
       overflow-x: hidden;
     }
 
-    /* Fixed Slideshow Background Elements */
+    /* Fixed Slideshow Background Elements with Will-Change support */
     .vcc-bg-slide {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: 120vh; /* slightly taller to cover parallax translation overflow */
       z-index: -3;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       transition: opacity 1.5s ease-in-out;
       pointer-events: none;
+      will-change: transform, opacity;
     }
 
     /* Gradient overlay dim mask for high-contrast text safety */
@@ -139,16 +140,16 @@
       text-shadow: var(--shadow-cyan);
     }
 
-    /* 3D Scroll Reveal Animation Classes */
+    /* 3D Motion Scroll Reveal Animation Styles */
     .vcc-3d-scroll-item {
       opacity: 0;
       transform: perspective(1000px) rotateX(12deg) translateY(35px) scale(0.96);
-      transition: transform 0.8s cubic-bezier(0.1, 0.9, 0.25, 1), opacity 0.8s ease-out;
+      transition: opacity 0.8s ease-out, transform 0.1s linear; /* quick linear transform transition for smooth scrolling micro-tilts */
+      will-change: transform, opacity;
     }
 
     .vcc-3d-scroll-item.visible {
       opacity: 1;
-      transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
     }
 
     /* Hero Section */
@@ -846,7 +847,7 @@
   </footer>
 
   <script>
-    // 3D Scroll Reveal Intersection Observer
+    // 3D Scroll Reveal Intersection Observer (Fades in once)
     document.addEventListener("DOMContentLoaded", () => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -855,12 +856,40 @@
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.05,
+        rootMargin: "0px 0px -20px 0px"
       });
 
       document.querySelectorAll(".vcc-3d-scroll-item").forEach(item => {
         observer.observe(item);
+      });
+    });
+
+    // Dynamic 3D Scroll Motion & Parallax Engine
+    window.addEventListener("scroll", () => {
+      const scrolled = window.pageYOffset;
+      
+      // Parallax Background shift
+      const bg1 = document.getElementById("vcc-bg-slideshow-1");
+      const bg2 = document.getElementById("vcc-bg-slideshow-2");
+      if (bg1) bg1.style.transform = `translateY(${scrolled * 0.12}px)`;
+      if (bg2) bg2.style.transform = `translateY(${scrolled * 0.12}px)`;
+      
+      // 3D Tilt on scroll position relative to viewport center
+      const viewportHeight = window.innerHeight;
+      const scrollItems = document.querySelectorAll(".vcc-3d-scroll-item.visible");
+      
+      scrollItems.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const itemCenter = rect.top + rect.height / 2;
+        const viewCenter = viewportHeight / 2;
+        const distanceFromCenter = (itemCenter - viewCenter) / viewCenter;
+        
+        // Tilt the card dynamically on rotateX and scale down slightly at screen edges
+        const tilt = Math.max(-12, Math.min(12, distanceFromCenter * 10));
+        const scale = Math.max(0.96, Math.min(1.04, 1 - Math.abs(distanceFromCenter) * 0.04));
+        
+        item.style.transform = `perspective(1000px) rotateX(${tilt}deg) scale(${scale})`;
       });
     });
 
