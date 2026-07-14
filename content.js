@@ -371,41 +371,9 @@ function playMenuSound(type) {
 if (isGameFrame) {
   console.log("[Trainer Extension] Injecting smartphone HUD logic inside frame.");
 
-  // Inject the fullscreen override script directly into the page context
+  // Inject the fullscreen override script via chrome.runtime.getURL to satisfy host CSP
   const fsOverrideScript = document.createElement("script");
-  fsOverrideScript.textContent = `
-    (function() {
-      const originalRequest = Element.prototype.requestFullscreen || 
-                              Element.prototype.webkitRequestFullscreen || 
-                              Element.prototype.mozRequestFullScreen || 
-                              Element.prototype.msRequestFullscreen;
-                              
-      if (originalRequest) {
-        const customRequest = function(options) {
-          if (this.tagName && this.tagName.toLowerCase() === "canvas") {
-            const parent = this.parentElement;
-            if (parent) {
-              const computed = window.getComputedStyle(parent);
-              if (computed.position === "static") {
-                parent.style.position = "relative";
-              }
-              const overlay = document.getElementById("vcc-trainer-overlay");
-              if (overlay && overlay.parentElement !== parent) {
-                parent.appendChild(overlay);
-              }
-              return originalRequest.call(parent, options);
-            }
-          }
-          return originalRequest.call(this, options);
-        };
-        
-        if (Element.prototype.requestFullscreen) Element.prototype.requestFullscreen = customRequest;
-        if (Element.prototype.webkitRequestFullscreen) Element.prototype.webkitRequestFullscreen = customRequest;
-        if (Element.prototype.mozRequestFullScreen) Element.prototype.mozRequestFullScreen = customRequest;
-        if (Element.prototype.msRequestFullscreen) Element.prototype.msRequestFullscreen = customRequest;
-      }
-    })();
-  `;
+  fsOverrideScript.src = chrome.runtime.getURL("inject.js");
   (document.head || document.documentElement).appendChild(fsOverrideScript);
   fsOverrideScript.remove();
 
