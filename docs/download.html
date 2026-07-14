@@ -516,7 +516,16 @@
       });
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    let scrollScheduled = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollScheduled) {
+        scrollScheduled = true;
+        requestAnimationFrame(() => {
+          handleScroll();
+          scrollScheduled = false;
+        });
+      }
+    }, { passive: true });
     handleScroll(); // Initial check on page load
 
     // Hamburger

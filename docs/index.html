@@ -651,9 +651,14 @@
   <button class="back-to-top" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
   <script>
-    // ── Particle background ──
+    // ── Particle background (Only run on desktop to prevent mobile lag) ──
     (function() {
       const c = document.getElementById('particle-canvas');
+      if (!c) return;
+      if (window.innerWidth <= 768) {
+        c.remove();
+        return;
+      }
       const ctx = c.getContext('2d');
       let W, H, pts = [];
       function resize() {
@@ -663,12 +668,12 @@
       resize();
       window.addEventListener('resize', resize);
       const colors = ['#ff0055','#00f0ff','#ffcc00','#9933ff','#00ff88'];
-      for (let i = 0; i < 18; i++) {
+      for (let i = 0; i < 15; i++) {
         pts.push({
           x: Math.random()*W, y: Math.random()*H,
           r: 1 + Math.random()*2,
-          vx: (Math.random()-.5)*.35,
-          vy: (Math.random()-.5)*.35,
+          vx: (Math.random()-.5)*.3,
+          vy: (Math.random()-.5)*.3,
           color: colors[i % colors.length],
           alpha: 0.15 + Math.random()*.35
         });
@@ -752,7 +757,16 @@
       });
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    let scrollScheduled = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollScheduled) {
+        scrollScheduled = true;
+        requestAnimationFrame(() => {
+          handleScroll();
+          scrollScheduled = false;
+        });
+      }
+    }, { passive: true });
     handleScroll(); // Initial check on page load
 
     // ── Animated stat counters ──
