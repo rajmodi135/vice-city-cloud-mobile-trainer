@@ -794,7 +794,8 @@ img.loading {
 
   .hype-ticker { font-size: 9px; padding: 7px 10px; letter-spacing: 1.5px; }
 
-  .nav-logo { font-size: 16px; }
+  .nav-logo { font-size: 18px; letter-spacing: 2px; }
+  .nav-logo span { display: none; }
 
   .btn { padding: 11px 18px; font-size: 11px; }
   .btn-xl { padding: 14px 28px; font-size: 14px; }
