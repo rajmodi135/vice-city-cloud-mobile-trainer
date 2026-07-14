@@ -99,22 +99,35 @@ code {
   position: relative; z-index: 1001;
   background: linear-gradient(90deg, #ff0055 0%, #ff6600 35%, #ffcc00 65%, #ff0055 100%);
   background-size: 200% 100%;
-  animation: tickerScroll 4s linear infinite;
+  animation: tickerBg 4s linear infinite;
   color: #000;
   font-family: var(--font-display);
   font-weight: 900;
   font-size: clamp(9px, 1.3vw, 12px);
   text-transform: uppercase;
-  text-align: center;
-  padding: 9px 12px;
-  letter-spacing: 2.5px;
-  white-space: nowrap;
+  letter-spacing: 2px;
+  padding: 9px 0;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-@keyframes tickerScroll {
+@keyframes tickerBg {
   0%   { background-position: 0% 50%;   }
   100% { background-position: 200% 50%; }
+}
+/* Marquee scroll via inner span */
+.hype-ticker span, .hype-ticker > span.ticker-inner {
+  display: inline-block;
+  animation: marqueeScroll 22s linear infinite;
+  padding-left: 100%;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+/* If ticker has no inner span (fallback): just center it */
+.hype-ticker:not(:has(span)) {
+  text-align: center;
+  padding: 9px 16px;
 }
 
 /* ── HEADER / NAV ── */

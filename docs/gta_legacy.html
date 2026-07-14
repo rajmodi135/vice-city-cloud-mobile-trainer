@@ -128,7 +128,7 @@
 <body>
 
   <!-- Hype Ticker -->
-  <div class="hype-ticker">🎮 GTA Legacy — Tribute to Rockstar Games | GTA VI — The Most Anticipated Game Ever Made 🎮</div>
+  <div class="hype-ticker"><span class="ticker-inner">🎮 GTA Legacy — Tribute to Rockstar Games | GTA VI — The Most Anticipated Game Ever Made 🎮</span></div>
 
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress" id="scroll-prog"></div>
@@ -157,7 +157,7 @@
         <li><a href="live_event.html" class="nav-hot">🔥 Live Event</a></li>
         <li><a href="download.html" class="nav-gold">⬇️ Downloads</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="openMobileNav()">
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -407,6 +407,14 @@
     setInterval(rotateBg,7000);
 
     // Hamburger
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobile-nav');
+      if (nav.classList.contains('open')) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
+    }
     function openMobileNav()  { document.getElementById('mobile-nav').classList.add('open');    document.getElementById('hamburger').classList.add('open');    document.body.style.overflow='hidden'; }
     function closeMobileNav() { document.getElementById('mobile-nav').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
     document.getElementById('mobile-nav').addEventListener('click', e => { if(e.target===e.currentTarget) closeMobileNav(); });
