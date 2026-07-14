@@ -756,14 +756,6 @@ code {
   background: none; border: none; padding: 8px;
 }
 
-/* ── SCROLL PROGRESS BAR ── */
-.scroll-progress {
-  position: fixed; top: 0; left: 0; z-index: 9999;
-  height: 3px; width: 0%;
-  background: linear-gradient(90deg, var(--pink), var(--yellow), var(--cyan));
-  transition: width 0.1s linear;
-  pointer-events: none;
-}
 
 /* ── SECTION DIVIDER ── */
 .section-divider {

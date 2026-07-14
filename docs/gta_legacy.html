@@ -130,10 +130,7 @@
   </style>
 </head>
 <body>
-<!-- Scroll Progress Bar -->
-  <div class="scroll-progress" id="scroll-prog"></div>
-
-  <!-- Mobile Nav Drawer -->
+<!-- Mobile Nav Drawer -->
   <nav class="mobile-nav" id="mobile-nav">
     <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
     <a href="index.html">🏠 Home</a>
@@ -389,7 +386,6 @@
     document.querySelectorAll('.reveal,.reveal-fade,.reveal-zoom,.reveal-left,.reveal-right,.reveal-flip').forEach(el => obs.observe(el));
 
     // ── Unified Scroll Handling (Progress, Back-to-Top, Header Scrolled state, Scroll-Switch & Zoom Bg) ──
-    const scrollProg = document.getElementById('scroll-prog');
     const btt = document.getElementById('btt');
     const header = document.querySelector('.site-header');
     const bgSlides = document.querySelectorAll('.bg-slide');
@@ -399,9 +395,6 @@
       const doc = document.documentElement;
       const scrollHeight = doc.scrollHeight - doc.clientHeight;
       const pct = scrollHeight > 0 ? Math.max(0, Math.min(scrollY / scrollHeight, 1.0)) : 0;
-
-      // Scroll Progress Bar
-      if (scrollProg) scrollProg.style.width = (pct * 100) + '%';
 
       // Back to Top button
       if (btt) btt.classList.toggle('show', scrollY > 400);
