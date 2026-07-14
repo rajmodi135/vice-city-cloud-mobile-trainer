@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/bg3.jpg">
-  <link rel="stylesheet" href="shared.css?v=3.0">
+  <link rel="stylesheet" href="shared.css?v=4.0">
 
   <style>
     /* ── CINEMATIC HERO ── */
@@ -166,6 +166,11 @@
         <li><a href="live_event.html" class="nav-hot">🔥 Live Event</a></li>
         <li><a href="download.html" class="nav-gold">⬇️ Downloads</a></li>
       </ul>
+      <!-- Nav Controls (Mute/CRT Settings) -->
+      <div class="nav-controls">
+        <button id="audio-toggle" class="control-btn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">🔊</button>
+        <button id="crt-toggle" class="control-btn" title="Toggle CRT Screen Scanlines" aria-label="Toggle CRT Screen Scanlines">📺</button>
+      </div>
       
     </div>
   </header>
@@ -488,6 +493,7 @@
         if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
       },
       playHover() {
+        if (localStorage.getItem('gta_mute') === 'true') return;
         this.init();
         if (!this.ctx) return;
         if (this.ctx.state === 'suspended') this.ctx.resume();
@@ -504,6 +510,7 @@
         osc.stop(this.ctx.currentTime + 0.08);
       },
       playClick() {
+        if (localStorage.getItem('gta_mute') === 'true') return;
         this.init();
         if (!this.ctx) return;
         if (this.ctx.state === 'suspended') this.ctx.resume();
@@ -520,6 +527,7 @@
         osc.stop(this.ctx.currentTime + 0.15);
       },
       playSuccess() {
+        if (localStorage.getItem('gta_mute') === 'true') return;
         this.init();
         if (!this.ctx) return;
         if (this.ctx.state === 'suspended') this.ctx.resume();
@@ -575,6 +583,97 @@
           }
         }
       }, { passive: true });
+    })();
+
+
+    // ── Settings Control Engine (Sound & CRT Toggles) ──
+    (function() {
+      const audioBtn = document.getElementById('audio-toggle');
+      const crtBtn = document.getElementById('crt-toggle');
+
+      // Initialize sound state
+      const isMuted = localStorage.getItem('gta_mute') === 'true';
+      if (isMuted) {
+        if (audioBtn) {
+          audioBtn.classList.add('active');
+          audioBtn.innerHTML = '🔇';
+          audioBtn.title = 'Sound Muted';
+        }
+      } else {
+        if (audioBtn) {
+          audioBtn.classList.remove('active');
+          audioBtn.innerHTML = '🔊';
+          audioBtn.title = 'Sound On';
+        }
+      }
+
+      // Initialize CRT scanline state - default to TRUE for retro aesthetics
+      if (localStorage.getItem('gta_crt') === null) {
+        localStorage.setItem('gta_crt', 'true');
+      }
+      const isCrtDisabled = localStorage.getItem('gta_crt') === 'false';
+      if (isCrtDisabled) {
+        document.body.classList.add('crt-disabled');
+        if (crtBtn) {
+          crtBtn.classList.add('active');
+          crtBtn.innerHTML = '🚫';
+          crtBtn.title = 'CRT Filter Off';
+        }
+      } else {
+        document.body.classList.remove('crt-disabled');
+        if (crtBtn) {
+          crtBtn.classList.remove('active');
+          crtBtn.innerHTML = '📺';
+          crtBtn.title = 'CRT Filter On';
+        }
+      }
+
+      // Audio Toggle Click
+      if (audioBtn) {
+        audioBtn.addEventListener('click', () => {
+          const currentlyMuted = localStorage.getItem('gta_mute') === 'true';
+          if (currentlyMuted) {
+            localStorage.setItem('gta_mute', 'false');
+            audioBtn.classList.remove('active');
+            audioBtn.innerHTML = '🔊';
+            audioBtn.title = 'Sound On';
+            if (window.GTAAudio) GTAAudio.playClick();
+          } else {
+            localStorage.setItem('gta_mute', 'true');
+            audioBtn.classList.add('active');
+            audioBtn.innerHTML = '🔇';
+            audioBtn.title = 'Sound Muted';
+          }
+        });
+      }
+
+      // CRT Toggle Click
+      if (crtBtn) {
+        crtBtn.addEventListener('click', () => {
+          const currentlyCrtDisabled = localStorage.getItem('gta_crt') === 'false';
+          if (currentlyCrtDisabled) {
+            localStorage.setItem('gta_crt', 'true');
+            document.body.classList.remove('crt-disabled');
+            crtBtn.classList.remove('active');
+            crtBtn.innerHTML = '📺';
+            crtBtn.title = 'CRT Filter On';
+          } else {
+            localStorage.setItem('gta_crt', 'false');
+            document.body.classList.add('crt-disabled');
+            crtBtn.classList.add('active');
+            crtBtn.innerHTML = '🚫';
+            crtBtn.title = 'CRT Filter Off';
+          }
+          if (window.GTAAudio) GTAAudio.playClick();
+        });
+      }
+
+      // Preload background images to eliminate visual flash on scroll
+      const urls = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg'];
+      urls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+      });
     })();
 </script>
 <div class="crt-overlay"></div>
