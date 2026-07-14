@@ -212,7 +212,7 @@
   <div class="tab-panel active" id="panel-launcher">
     <div class="launcher-section" style="display:flex; flex-direction:column; gap:8px;">
       <button id="launch-btn" class="neon-btn cyan-btn">LAUNCH GAME IN THIS WINDOW</button>
-      <button onclick="toggleDownloadDrawer(true)" class="neon-btn pink-btn" style="box-shadow: 0 0 10px rgba(255,0,85,0.3); background: rgba(255,0,85,0.06); border-color: #ff0055; font-size:12px; margin-top:2px;">📥 OPEN DOWNLOAD MANAGER</button>
+      <button id="open-download-drawer" class="neon-btn pink-btn" style="box-shadow: 0 0 10px rgba(255,0,85,0.3); background: rgba(255,0,85,0.06); border-color: #ff0055; font-size:12px; margin-top:2px;">📥 OPEN DOWNLOAD MANAGER</button>
     </div>
     <div class="info-banner">
       PRO-TIP: Press <span>`</span> (Backtick) or <span>F1</span> inside the game screen to toggle the Left Overlay Menu!
@@ -255,7 +255,7 @@
   <div class="download-drawer" id="download-drawer">
     <div class="drawer-header">
       <div class="drawer-title">⬇️ DOWNLOAD MANAGER</div>
-      <button class="drawer-close-btn" onclick="toggleDownloadDrawer(false)">✕ Close</button>
+      <button class="drawer-close-btn" id="close-download-drawer">✕ Close</button>
     </div>
 
     <!-- Speed Stats -->
@@ -289,8 +289,8 @@
         <span class="dl-speed" id="sp-torrent"></span>
       </div>
       <a href="https://rajmodi135.github.io/vice-city-launcher/downloads/Grand-Theft-Auto-Vice-City.torrent"
-         class="dl-btn dl-btn-cyan" id="btn-torrent"
-         onclick="startDownload('torrent',this)" style="margin-top:6px;">
+         class="dl-btn dl-btn-cyan dl-trigger-btn" id="btn-torrent"
+         data-dl-type="torrent" style="margin-top:6px;">
         ⬇ Download Torrent File
       </a>
     </div>
@@ -310,8 +310,8 @@
         <span class="dl-speed" id="sp-save"></span>
       </div>
       <a href="https://rajmodi135.github.io/vice-city-launcher/downloads/GTAVCsf1.b"
-         class="dl-btn dl-btn-green" id="btn-save"
-         onclick="startDownload('save',this)" style="margin-top:6px;">
+         class="dl-btn dl-btn-green dl-trigger-btn" id="btn-save"
+         data-dl-type="save" style="margin-top:6px;">
         ⬇ Download Save Slot 1
       </a>
     </div>
@@ -331,8 +331,8 @@
         <span class="dl-speed" id="sp-save2"></span>
       </div>
       <a href="https://rajmodi135.github.io/vice-city-launcher/downloads/RICHIE_RICHHSAVE.b"
-         class="dl-btn dl-btn-green" id="btn-save2"
-         onclick="startDownload('save2',this)" style="margin-top:6px;">
+         class="dl-btn dl-btn-green dl-trigger-btn" id="btn-save2"
+         data-dl-type="save2" style="margin-top:6px;">
         ⬇ Download Save Slot 2
       </a>
     </div>
@@ -352,8 +352,8 @@
         <span class="dl-speed" id="sp-wall"></span>
       </div>
       <a href="https://rajmodi135.github.io/vice-city-launcher/downloads/GTAVI_Artwork_Wallpapers.zip"
-         class="dl-btn dl-btn-cyan" id="btn-wall"
-         onclick="startDownload('wall',this)" style="margin-top:6px;">
+         class="dl-btn dl-btn-cyan dl-trigger-btn" id="btn-wall"
+         data-dl-type="wall" style="margin-top:6px;">
         ⬇ Download Wallpapers Pack
       </a>
     </div>
@@ -373,8 +373,8 @@
         <span class="dl-speed" id="sp-ext"></span>
       </div>
       <a href="https://rajmodi135.github.io/vice-city-launcher/downloads/vice-city-cloud-mobile-trainer.zip"
-         class="dl-btn dl-btn-pink" id="btn-ext"
-         onclick="startDownload('ext',this)" style="margin-top:6px;">
+         class="dl-btn dl-btn-pink dl-trigger-btn" id="btn-ext"
+         data-dl-type="ext" style="margin-top:6px;">
         ⬇ Download Extension
       </a>
     </div>
@@ -389,8 +389,8 @@
         </div>
       </div>
       <a href="https://rajmodi135.github.io/vice-city-launcher/downloads/Vice-City-Complete-Pack.zip"
-         class="dl-bundle-btn" id="btn-bundle"
-         onclick="startDownload('bundle',this)">
+         class="dl-bundle-btn dl-trigger-btn" id="btn-bundle"
+         data-dl-type="bundle">
         <span>⬇</span> DOWNLOAD COMPLETE PACK
       </a>
     </div>
@@ -409,83 +409,6 @@
   </div>
 
   <script src="popup.js"></script>
-  <script>
-    // ── Main Tab Switching ──
-    document.querySelectorAll('.main-tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('panel-' + btn.dataset.mainTab).classList.add('active');
-      });
-    });
 
-    // ── Toggle Download Manager Drawer ──
-    function toggleDownloadDrawer(show) {
-      if (typeof playButtonSound === 'function') playButtonSound();
-      const drawer = document.getElementById('download-drawer');
-      if (show) {
-        drawer.classList.add('active');
-      } else {
-        drawer.classList.remove('active');
-      }
-    }
-
-    // ── Download with animated progress ──
-    function startDownload(type, btnEl) {
-      const configs = {
-        torrent: { prog: 'prog-torrent', status: 'st-torrent', speed: 'sp-torrent', size: 13312,   label: 'Torrent' },
-        save:    { prog: 'prog-save',    status: 'st-save',    speed: 'sp-save',    size: 201728,  label: 'Save Slot 1' },
-        save2:   { prog: 'prog-save2',   status: 'st-save2',   speed: 'sp-save2',   size: 201728,  label: 'Save Slot 2' },
-        wall:    { prog: 'prog-wall',    status: 'st-wall',    speed: 'sp-wall',    size: 40000000, label: 'Wallpapers' },
-        ext:     { prog: 'prog-ext',     status: 'st-ext',     speed: 'sp-ext',     size: 479994,  label: 'Extension' },
-        bundle:  { prog: null,           status: null,         speed: null,          size: 67885,   label: 'Bundle' }
-      };
-      const cfg = configs[type];
-      if (!cfg.prog) return; // bundle uses direct link
-
-      const progBar = document.getElementById(cfg.prog);
-      const statusEl = document.getElementById(cfg.status);
-      const speedEl  = document.getElementById(cfg.speed);
-
-      // Animate progress bar
-      progBar.classList.remove('idle');
-      progBar.style.width = '0%';
-      btnEl.style.opacity = '0.6';
-      btnEl.style.pointerEvents = 'none';
-
-      document.getElementById('stat-status').textContent = 'LOADING';
-      document.getElementById('stat-status').style.color = '#ffcc00';
-
-      let progress = 0;
-      const interval = setInterval(() => {
-        // Simulate download with realistic speed curve
-        const increment = Math.random() * 12 + (progress < 50 ? 6 : 2);
-        progress = Math.min(progress + increment, 100);
-        progBar.style.width = progress + '%';
-
-        // Fake speed display
-        const fakeSpeed = Math.floor(Math.random() * 4000 + 2000);
-        const speedStr = fakeSpeed > 1024 ? (fakeSpeed/1024).toFixed(1)+' MB/s' : fakeSpeed+' KB/s';
-        if (speedEl) speedEl.textContent = speedStr;
-        document.getElementById('stat-speed').textContent = speedStr;
-
-        if (statusEl) statusEl.textContent = `Downloading... ${Math.floor(progress)}%`;
-
-        if (progress >= 100) {
-          clearInterval(interval);
-          progBar.style.background = '#00ff88';
-          progBar.style.animation = 'none';
-          if (statusEl) statusEl.textContent = '✅ Download Complete!';
-          if (speedEl) speedEl.textContent = '';
-          document.getElementById('stat-status').textContent = 'DONE';
-          document.getElementById('stat-status').style.color = '#00ff88';
-          document.getElementById('stat-speed').textContent = '—';
-          btnEl.textContent = '✅ Downloaded!';
-          btnEl.style.opacity = '1';
-        }
-      }, 120);
-    }
-  </script>
 </body>
 </html>

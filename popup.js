@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderCheats();
   setupLauncher();
   setupFilters();
+  setupTabs();
+  setupDownloadDrawer();
   await updateConnectionStatus();
 });
 
@@ -240,4 +242,126 @@ async function sendCheatToTab(code) {
     console.error("Communication error:", err);
     alert("Could not communicate with the game tab. Please reload the game page and try again!");
   }
+}
+
+// ── Tab Navigation (Programmatic binding for MV3) ──
+function setupTabs() {
+  const mainTabButtons = document.querySelectorAll('.main-tab-btn');
+  mainTabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      playSound("tab");
+      mainTabButtons.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      
+      btn.classList.add('active');
+      const targetId = 'panel-' + btn.getAttribute('data-main-tab');
+      const targetPanel = document.getElementById(targetId);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+    });
+  });
+}
+
+// ── Toggle Download Drawer Overlay ──
+function toggleDownloadDrawer(show) {
+  playSound("click");
+  const drawer = document.getElementById('download-drawer');
+  if (drawer) {
+    if (show) {
+      drawer.classList.add('active');
+    } else {
+      drawer.classList.remove('active');
+    }
+  }
+}
+
+// ── Download Manager setup ──
+function setupDownloadDrawer() {
+  const openBtn = document.getElementById('open-download-drawer');
+  const closeBtn = document.getElementById('close-download-drawer');
+  
+  if (openBtn) {
+    openBtn.addEventListener('click', () => toggleDownloadDrawer(true));
+  }
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => toggleDownloadDrawer(false));
+  }
+  
+  // Bind download actions programmatically to avoid inline click event violations (MV3 CSP)
+  const triggerBtns = document.querySelectorAll('.dl-trigger-btn');
+  triggerBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const type = btn.getAttribute('data-dl-type');
+      if (type) {
+        startDownload(type, btn);
+      }
+    });
+  });
+}
+
+// ── Download with animated progress ──
+function startDownload(type, btnEl) {
+  const configs = {
+    torrent: { prog: 'prog-torrent', status: 'st-torrent', speed: 'sp-torrent', size: 13312,   label: 'Torrent' },
+    save:    { prog: 'prog-save',    status: 'st-save',    speed: 'sp-save',    size: 201728,  label: 'Save Slot 1' },
+    save2:   { prog: 'prog-save2',   status: 'st-save2',   speed: 'sp-save2',   size: 201728,  label: 'Save Slot 2' },
+    wall:    { prog: 'prog-wall',    status: 'st-wall',    speed: 'sp-wall',    size: 40000000, label: 'Wallpapers' },
+    ext:     { prog: 'prog-ext',     status: 'st-ext',     speed: 'sp-ext',     size: 479994,  label: 'Extension' },
+    bundle:  { prog: null,           status: null,         speed: null,          size: 67885,   label: 'Bundle' }
+  };
+  const cfg = configs[type];
+  if (!cfg || !cfg.prog) return; // bundle/fallback direct download
+
+  const progBar = document.getElementById(cfg.prog);
+  const statusEl = document.getElementById(cfg.status);
+  const speedEl  = document.getElementById(cfg.speed);
+
+  // Animate progress bar
+  progBar.classList.remove('idle');
+  progBar.style.width = '0%';
+  btnEl.style.opacity = '0.6';
+  btnEl.style.pointerEvents = 'none';
+
+  const statusNumEl = document.getElementById('stat-status');
+  if (statusNumEl) {
+    statusNumEl.textContent = 'LOADING';
+    statusNumEl.style.color = '#ffcc00';
+  }
+
+  let progress = 0;
+  const interval = setInterval(() => {
+    // Simulate download with realistic speed curve
+    const increment = Math.random() * 12 + (progress < 50 ? 6 : 2);
+    progress = Math.min(progress + increment, 100);
+    progBar.style.width = progress + '%';
+
+    // Fake speed display
+    const fakeSpeed = Math.floor(Math.random() * 4000 + 2000);
+    const speedStr = fakeSpeed > 1024 ? (fakeSpeed/1024).toFixed(1)+' MB/s' : fakeSpeed+' KB/s';
+    if (speedEl) speedEl.textContent = speedStr;
+    
+    const speedNumEl = document.getElementById('stat-speed');
+    if (speedNumEl) speedNumEl.textContent = speedStr;
+
+    if (statusEl) statusEl.textContent = `Downloading... ${Math.floor(progress)}%`;
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      progBar.style.background = '#00ff88';
+      progBar.style.animation = 'none';
+      if (statusEl) statusEl.textContent = '✅ Download Complete!';
+      if (speedEl) speedEl.textContent = '';
+      
+      if (statusNumEl) {
+        statusNumEl.textContent = 'DONE';
+        statusNumEl.style.color = '#00ff88';
+      }
+      const speedNumEl = document.getElementById('stat-speed');
+      if (speedNumEl) speedNumEl.textContent = '—';
+      
+      btnEl.textContent = '✅ Downloaded!';
+      btnEl.style.opacity = '1';
+    }
+  }, 120);
 }
