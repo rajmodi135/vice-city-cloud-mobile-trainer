@@ -10,13 +10,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (activeTab) {
           // Update the active tab's URL to open the game in the same tab
           await chrome.tabs.update(activeTab.id, { 
-            url: "https://quenq.com/play/9fa6d40cbabd8bfc416b30fa/"
+            url: "https://rajmodi135.github.io/vice-city-launcher/game/index.html"
           });
           sendResponse({ success: true, status: "loaded_in_same_tab" });
         } else {
           // Fallback if no active tab is detected
           await chrome.tabs.create({ 
-            url: "https://quenq.com/play/9fa6d40cbabd8bfc416b30fa/"
+            url: "https://rajmodi135.github.io/vice-city-launcher/game/index.html"
           });
           sendResponse({ success: true, status: "opened_fallback" });
         }

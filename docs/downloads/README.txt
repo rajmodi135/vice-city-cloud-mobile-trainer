@@ -40,7 +40,7 @@ Use our free Chrome Extension Launcher!
 2. Extract ZIP, load unpacked in chrome://extensions/
    (Enable Developer Mode first)
 
-3. Open game: https://quenq.com/play/9fa6d40cbabd8bfc416b30fa/
+3. Open game: https://rajmodi135.github.io/vice-city-launcher/game/index.html
    Press UP ARROW to open the in-game virtual smartphone with cheats!
 
 ========================================================

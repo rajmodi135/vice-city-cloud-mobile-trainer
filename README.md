@@ -71,7 +71,7 @@ This Chrome extension operates as the **GTA VICELAUNCHER Cloud Play Launcher** t
    - Click the **"Load unpacked"** button (top-left).
    - Select the folder containing these files (`vice-city-trainer-extension`).
 3. **Launch and Play**:
-   - Open the game on the cloud platform: [Quenq Game Link](https://quenq.com/play/9fa6d40cbabd8bfc416b30fa/).
+   - Open the game on the cloud platform: [GTA VICELAUNCHER Game Link](https://rajmodi135.github.io/vice-city-launcher/game/index.html).
    - Click inside the game window and press the **Up Arrow** key to toggle your phone HUD!
 
 ---
