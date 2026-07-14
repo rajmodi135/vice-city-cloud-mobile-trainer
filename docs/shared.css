@@ -291,15 +291,7 @@ code {
 .glass-card.hover-yellow:hover { border-color: rgba(255,204,0,.4);  box-shadow: 0 6px 30px rgba(255,204,0,.15); }
 .glass-card.hover-green:hover  { border-color: rgba(0,255,136,.4);  box-shadow: 0 6px 30px rgba(0,255,136,.15); }
 
-/* ── SCROLL REVEAL ── */
-.reveal {
-  opacity: 0;
-  transform: perspective(900px) rotateX(8deg) translateY(28px) scale(0.97);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-  will-change: opacity, transform;
-  content-visibility: auto;
-}
-.reveal.visible { opacity: 1; transform: none; }
+
 
 /* ── STAT COUNTER ── */
 .stat-row {
