@@ -151,6 +151,7 @@
   <!-- Fixed Frozen Background -->
   <div id="bg-slide-1" class="bg-slide" style="background-image:url('images/bg2.jpg');opacity:1;"></div>
   <div id="bg-slide-2" class="bg-slide" style="background-image:url('images/bg1.jpg');opacity:0;"></div>
+  <div id="bg-slide-3" class="bg-slide" style="background-image:url('images/bg3.jpg');opacity:0;"></div>
   <div class="bg-overlay"></div>
 
   <!-- Scroll Progress Bar -->
@@ -422,7 +423,7 @@
     const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.05 });
     document.querySelectorAll('.reveal,.reveal-fade,.reveal-zoom,.reveal-left,.reveal-right,.reveal-flip').forEach(el => obs.observe(el));
 
-    // ── Unified Scroll Handling (Progress, Back-to-Top, Header Scrolled state, Bg Zoom Parallax) ──
+    // ── Unified Scroll Handling (Progress, Back-to-Top, Header Scrolled state, Scroll-Switch & Zoom Bg) ──
     const scrollProg = document.getElementById('scroll-prog');
     const btt = document.getElementById('btt');
     const header = document.querySelector('.site-header');
@@ -431,10 +432,11 @@
     function handleScroll() {
       const scrollY = window.scrollY;
       const doc = document.documentElement;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const pct = scrollHeight > 0 ? scrollY / scrollHeight : 0;
 
       // Scroll Progress Bar
-      const pct = (scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
-      if (scrollProg) scrollProg.style.width = Math.min(pct, 100) + '%';
+      if (scrollProg) scrollProg.style.width = (pct * 100) + '%';
 
       // Back to Top button
       if (btt) btt.classList.toggle('show', scrollY > 400);
@@ -448,24 +450,32 @@
         }
       }
 
-      // Parallax Zoom (scaled out/1.0 on top, zooms in on scroll)
-      const scale = 1.0 + (scrollY * 0.00035);
+      // Scroll-driven Background switching (3 slides)
+      let activeIdx = 0;
+      if (pct > 0.33 && pct <= 0.66) {
+        activeIdx = 1;
+      } else if (pct > 0.66) {
+        activeIdx = 2;
+      }
+
+      bgSlides.forEach((slide, idx) => {
+        if (idx === activeIdx) {
+          slide.style.opacity = '1';
+        } else {
+          slide.style.opacity = '0';
+        }
+      });
+
+      // Section depth zoom effect (zooms from 1.0 to 1.08 in each scroll section)
+      const sectionPct = (pct % 0.33) / 0.33;
+      const scale = 1.0 + (sectionPct * 0.08);
       bgSlides.forEach(slide => {
-        slide.style.transform = `scale(${Math.min(scale, 1.25)})`;
+        slide.style.transform = `scale(${scale})`;
       });
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check on page load
-
-    // Background rotation
-    let bgIdx = 0, activeSlide = 1;
-    setInterval(() => {
-      bgIdx = (bgIdx + 1) % 2;
-      const s1 = document.getElementById('bg-slide-1'), s2 = document.getElementById('bg-slide-2');
-      if (activeSlide === 1) { s2.style.opacity='1'; s1.style.opacity='0'; activeSlide=2; }
-      else { s1.style.opacity='1'; s2.style.opacity='0'; activeSlide=1; }
-    }, 8000);
 
     // Hamburger
     function toggleMobileNav() {

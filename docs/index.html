@@ -317,6 +317,7 @@
   <!-- Fixed Frozen Background -->
   <div id="bg-slide-1" class="bg-slide" style="background-image:url('images/bg1.jpg');opacity:1;"></div>
   <div id="bg-slide-2" class="bg-slide" style="background-image:url('images/bg2.jpg');opacity:0;"></div>
+  <div id="bg-slide-3" class="bg-slide" style="background-image:url('images/bg3.jpg');opacity:0;"></div>
   <div class="bg-overlay"></div>
 
   <!-- Particle Canvas -->
@@ -704,7 +705,7 @@
     }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal,.reveal-fade,.reveal-zoom,.reveal-left,.reveal-right,.reveal-flip').forEach(el => revealObs.observe(el));
 
-    // ── Unified Scroll Handling (Progress, Back-to-Top, Header Scrolled state, Bg Zoom Parallax) ──
+    // ── Unified Scroll Handling (Progress, Back-to-Top, Header Scrolled state, Scroll-Switch & Zoom Bg) ──
     const scrollProg = document.getElementById('scroll-prog');
     const btt = document.getElementById('btt');
     const header = document.querySelector('.site-header');
@@ -713,10 +714,11 @@
     function handleScroll() {
       const scrollY = window.scrollY;
       const doc = document.documentElement;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const pct = scrollHeight > 0 ? scrollY / scrollHeight : 0;
 
       // Scroll Progress Bar
-      const pct = (scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
-      if (scrollProg) scrollProg.style.width = Math.min(pct, 100) + '%';
+      if (scrollProg) scrollProg.style.width = (pct * 100) + '%';
 
       // Back to Top button
       if (btt) btt.classList.toggle('show', scrollY > 400);
@@ -730,10 +732,27 @@
         }
       }
 
-      // Parallax Zoom (scaled out/1.0 on top, zooms in on scroll)
-      const scale = 1.0 + (scrollY * 0.00035);
+      // Scroll-driven Background switching (3 slides)
+      let activeIdx = 0;
+      if (pct > 0.33 && pct <= 0.66) {
+        activeIdx = 1;
+      } else if (pct > 0.66) {
+        activeIdx = 2;
+      }
+
+      bgSlides.forEach((slide, idx) => {
+        if (idx === activeIdx) {
+          slide.style.opacity = '1';
+        } else {
+          slide.style.opacity = '0';
+        }
+      });
+
+      // Section depth zoom effect (zooms from 1.0 to 1.08 in each scroll section)
+      const sectionPct = (pct % 0.33) / 0.33;
+      const scale = 1.0 + (sectionPct * 0.08);
       bgSlides.forEach(slide => {
-        slide.style.transform = `scale(${Math.min(scale, 1.25)})`;
+        slide.style.transform = `scale(${scale})`;
       });
     }
 
