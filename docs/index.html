@@ -826,30 +826,22 @@
       item.classList.toggle('open');
     }
 
-    // ── Background Slideshow ──
-    const bgImgs = ['images/bg1.jpg','images/bg2.jpg','images/bg3.jpg'];
-    let bgIdx = 0, activeSlide = 1;
-    function rotateBg() {
-      bgIdx = (bgIdx + 1) % bgImgs.length;
-      const s1 = document.getElementById('bg-slide-1');
-      const s2 = document.getElementById('bg-slide-2');
-      if (activeSlide === 1) {
-        s2.style.backgroundImage = `url('${bgImgs[bgIdx]}')`;
-        s2.style.opacity = '1'; s1.style.opacity = '0'; activeSlide = 2;
-      } else {
-        s1.style.backgroundImage = `url('${bgImgs[bgIdx]}')`;
-        s1.style.opacity = '1'; s2.style.opacity = '0'; activeSlide = 1;
-      }
-    }
-    setInterval(rotateBg, 7000);
-
     // ── Hamburger Menu ──
     function toggleMobileNav() {
-      const nav = document.getElementById('mobile-nav');
-      if (nav.classList.contains('open')) {
-        closeMobileNav();
+      const hamburger = document.getElementById('hamburger');
+      if (window.innerWidth > 768) {
+        // Desktop: Toggle inline staggered links
+        const navLinks = document.querySelector('.nav-links');
+        const isOpen = navLinks.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
       } else {
-        openMobileNav();
+        // Mobile: Toggle drawer
+        const mobileNav = document.getElementById('mobile-nav');
+        if (mobileNav.classList.contains('open')) {
+          closeMobileNav();
+        } else {
+          openMobileNav();
+        }
       }
     }
     function openMobileNav() {
@@ -861,6 +853,8 @@
       document.getElementById('mobile-nav').classList.remove('open');
       document.getElementById('hamburger').classList.remove('open');
       document.body.style.overflow = '';
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks) navLinks.classList.remove('open');
     }
     // Close on backdrop click
     document.getElementById('mobile-nav').addEventListener('click', e => {

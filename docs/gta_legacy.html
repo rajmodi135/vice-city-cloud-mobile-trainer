@@ -444,15 +444,30 @@
 
     // Hamburger
     function toggleMobileNav() {
-      const nav = document.getElementById('mobile-nav');
-      if (nav.classList.contains('open')) {
-        closeMobileNav();
+      const hamburger = document.getElementById('hamburger');
+      if (window.innerWidth > 768) {
+        // Desktop: Toggle inline staggered links
+        const navLinks = document.querySelector('.nav-links');
+        const isOpen = navLinks.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
       } else {
-        openMobileNav();
+        // Mobile: Toggle drawer
+        const mobileNav = document.getElementById('mobile-nav');
+        if (mobileNav.classList.contains('open')) {
+          closeMobileNav();
+        } else {
+          openMobileNav();
+        }
       }
     }
     function openMobileNav()  { document.getElementById('mobile-nav').classList.add('open');    document.getElementById('hamburger').classList.add('open');    document.body.style.overflow='hidden'; }
-    function closeMobileNav() { document.getElementById('mobile-nav').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
+    function closeMobileNav() { 
+      document.getElementById('mobile-nav').classList.remove('open'); 
+      document.getElementById('hamburger').classList.remove('open'); 
+      document.body.style.overflow=''; 
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks) navLinks.classList.remove('open');
+    }
     document.getElementById('mobile-nav').addEventListener('click', e => { if(e.target===e.currentTarget) closeMobileNav(); });
   </script>
 </body>
