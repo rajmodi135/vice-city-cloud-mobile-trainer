@@ -287,15 +287,23 @@ code {
 .glass-card {
   background: var(--bg-card);
   border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: var(--radius-md);
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: var(--transition);
-  overflow: hidden;
   position: relative;
 }
+.glass-card::after {
+  content: '';
+  position: absolute; bottom: 0; right: 0;
+  width: 16px; height: 16px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.15) 50%);
+  pointer-events: none;
+  transition: var(--transition);
+}
 .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.16);
   box-shadow: 0 8px 40px rgba(0,0,0,0.4);
   transform: translateY(-4px);
 }
@@ -314,9 +322,13 @@ code {
 .glass-card.accent-green::before  { background: var(--green);  box-shadow: 0 2px 12px var(--green); }
 
 .glass-card.hover-pink:hover   { border-color: rgba(255,0,85,.4);   box-shadow: 0 6px 30px rgba(255,0,85,.15); }
+.glass-card.hover-pink:hover::after { background: linear-gradient(135deg, transparent 50%, var(--pink) 50%); }
 .glass-card.hover-cyan:hover   { border-color: rgba(0,240,255,.4);  box-shadow: 0 6px 30px rgba(0,240,255,.15); }
+.glass-card.hover-cyan:hover::after { background: linear-gradient(135deg, transparent 50%, var(--cyan) 50%); }
 .glass-card.hover-yellow:hover { border-color: rgba(255,204,0,.4);  box-shadow: 0 6px 30px rgba(255,204,0,.15); }
+.glass-card.hover-yellow:hover::after { background: linear-gradient(135deg, transparent 50%, var(--yellow) 50%); }
 .glass-card.hover-green:hover  { border-color: rgba(0,255,136,.4);  box-shadow: 0 6px 30px rgba(0,255,136,.15); }
+.glass-card.hover-green:hover::after { background: linear-gradient(135deg, transparent 50%, var(--green) 50%); }
 
 
 
@@ -819,7 +831,7 @@ img.loading {
 
   .badge { font-size: 9px; padding: 4px 12px; }
 
-  .glass-card { border-radius: var(--radius-sm); }
+  .glass-card { border-radius: 0; }
 
   .stat-row { font-size: 12px; }
   .stat-value { font-size: 11px; }
@@ -859,4 +871,66 @@ img.loading {
     opacity: 1 !important; transform: none !important;
   }
 }
+
+/* ── CRT OVERLAY ── */
+.crt-overlay {
+  position: fixed; inset: 0;
+  z-index: 9998;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.12) 50%), 
+              linear-gradient(90deg, rgba(255, 0, 85, 0.03), rgba(0, 240, 255, 0.01), rgba(255, 204, 0, 0.03));
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none;
+  opacity: 0.35;
+}
+.crt-overlay::after {
+  content: " ";
+  display: block; position: absolute; inset: 0;
+  background: radial-gradient(circle, rgba(18,16,16,0) 65%, rgba(0,0,0,0.45) 100%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ── HUD WANTED STARS ── */
+.hud-wanted {
+  display: inline-flex; gap: 6px; margin: 10px 0;
+}
+.hud-star {
+  font-size: 16px; color: rgba(255, 255, 255, 0.12);
+  transition: all 0.3s;
+}
+.hud-star.active {
+  color: var(--yellow);
+  text-shadow: 0 0 10px var(--yellow), 0 0 20px var(--orange);
+  animation: starFlash 1s ease-in-out infinite alternate;
+}
+.hud-star:nth-child(1).active { animation-delay: 0.1s; }
+.hud-star:nth-child(2).active { animation-delay: 0.2s; }
+.hud-star:nth-child(3).active { animation-delay: 0.3s; }
+.hud-star:nth-child(4).active { animation-delay: 0.4s; }
+.hud-star:nth-child(5).active { animation-delay: 0.5s; }
+
+@keyframes starFlash {
+  0% { transform: scale(1); opacity: 0.75; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ── HUD STAT BARS ── */
+.hud-stats-group {
+  display: flex; flex-direction: column; gap: 8px; margin: 12px 0;
+}
+.hud-stat-item {
+  display: flex; align-items: center; gap: 10px; font-size: 12px;
+}
+.hud-stat-label {
+  font-family: var(--font-display); width: 55px; text-transform: uppercase; font-weight: 700; color: var(--text-soft);
+}
+.hud-stat-bar {
+  flex-grow: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 1px; overflow: hidden; position: relative;
+}
+.hud-stat-fill {
+  height: 100%; transition: width 0.8s ease-in-out;
+}
+.hud-stat-fill.health { background: var(--pink); box-shadow: 0 0 8px var(--pink); }
+.hud-stat-fill.armor { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+.hud-stat-fill.stamina { background: var(--green); box-shadow: 0 0 8px var(--green); }
 
