@@ -51,7 +51,7 @@ PID_FILE="${DOWNLOAD_DIR}/.aria2_daemon.pid"
 MAX_CONN_PER_SERVER=16          # Connections per server
 SPLIT=16                        # Number of pieces to split file into
 MAX_CONCURRENT=8                # Parallel torrent file downloads
-MIN_SPLIT_SIZE="512K"           # Minimum chunk size per split
+MIN_SPLIT_SIZE="1M"           # Minimum chunk size per split
 RPC_PORT=6800                   # aria2 RPC port for status checking
 RETRY_WAIT=3                    # Seconds between retries
 SAVE_INTERVAL=5                 # Session save interval in seconds
@@ -235,7 +235,6 @@ start_download() {
       --download-result=full \
       --log="$LOG_FILE" \
       --log-level=notice \
-      --human-readable-number=true \
       --console-log-level=warn \
       2>&1 &
 
